@@ -1,0 +1,18 @@
+@import './global'; // Assuming global.scss is already created
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  padding: 20px 0;
+
+  &.scrolled {
+    background-color: $primary_color; // Set primary_color when at the bottom
+  }
+
+  .container {
+    text-align: center;
+  }
+}

@@ -9,6 +9,8 @@ import crypto from 'crypto-browserify';
 import { Stream } from 'stream-browserify';
 import { Util } from 'util';
 import { createContext, runInContext } from 'vm-browserify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/main.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Example usage:

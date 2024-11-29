@@ -1,74 +1,106 @@
+@import './global'; // Import global styles
+
 .header {
-    background-color: #1c1c3c; // Dark navy color
-    padding: 1rem 2rem;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+  z-index: 1000;
+  background-color: $primary_color; // Primary color for header background
+  transition: background-color 0.3s ease;
+
+  &.scrolled {
+    background-color: transparent; // Change background when scrolled
+  }
+
+  .ant-menu {
+    background-color: transparent; // Ensure menu blends with header
+    border-bottom: none; // Remove bottom border
+  }
+
+  .menu-item {
+    color: white;
+    position: relative;
+    display: inline-block;
+    font-weight: bolder;
+
+    &:hover {
+      color: $tertiary_color2 !important; // Highlight color on hover
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px; // Line thickness
+      background-color: $tertiary_color2;
+      transition: width 0.3s ease, background-color 0.3s ease; // Smooth animation
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  .btn-support {
+    border: 2px solid $secondary_color;
+    color: white;
+    background-color: transparent;
   
-    .logo {
-      display: flex;
-      align-items: center;
+    &:hover {
+      background-color: $tertiary_color !important;
+      border-color: $secondary_color !important;
+      color: white !important;
+    }
+  }
+
+  .btn-purchase-now {
+    background-color: $tertiary_color;
+      border-color: $secondary_color;
+      color: white;
+    
+    &:hover {
+        color: white !important;
+        border: 2px solid $secondary_color !important;
+        background-color: transparent !important;
+    }
+  }
   
-      .logo-icon {
-        width: 30px;
-        height: auto;
-        margin-right: 10px;
-      }
-  
-      .logo-text {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #fff;
+    &.btn-primary {
+      background-color: $tertiary_color2;
+
+      &:hover {
+        background-color: darken($tertiary_color2, 10%); // Darker hover effect
       }
     }
-  
-    .nav {
-      .nav-list {
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-  
-        li {
-          margin: 0 1rem;
-          color: #fff;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: color 0.3s;
-  
-          &:hover {
-            color: #007bff;
-          }
-        }
-      }
+
+    svg {
+      margin-right: 8px; // Space between icon and text
     }
-  
-    .actions {
-      .btn-outline {
-        margin-right: 1rem;
-        border: 1px solid #fff;
-        color: #fff;
-        border-radius: 20px;
-        padding: 0.5rem 1rem;
-  
+  }
+
+  .filter-white {
+    filter: brightness(0) invert(1); // Make images white
+  }
+
+  .ant-drawer {
+    .ant-drawer-content {
+      background-color: $primary_color; // Match drawer with header
+    }
+
+    .ant-drawer-title {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .ant-drawer-body {
+      padding: 0;
+
+      .menu-item {
+        color: red;
+
         &:hover {
-          background-color: #fff;
-          color: #1c1c3c;
-        }
-      }
-  
-      .btn-purchase {
-        background-color: #007bff;
-        color: #fff;
-        border-radius: 20px;
-        padding: 0.5rem 1rem;
-  
-        &:hover {
-          background-color: #0056b3;
+          background-color: rgba(255, 255, 255, 0.1); // Subtle hover effect
         }
       }
     }
   }
-  

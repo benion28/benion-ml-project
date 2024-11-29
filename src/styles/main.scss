@@ -1,8 +1,8 @@
-$primary-color: #3498db;
+@import './global'; // Importing global.scss
 
 body {
   font-family: Arial, sans-serif;
-  background-color: $primary-color;
+  background-color: $secondary-color;
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

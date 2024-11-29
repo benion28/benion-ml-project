@@ -1,0 +1,54 @@
+@import './global';
+
+.action-button {
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 50px; // Rounded style
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  & > .button-icon {
+    margin-right: 0.5rem; // Spacing between icon and text
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &.primary {
+    background-color: $primary_color;
+    border: none;
+    color: white;
+
+    &:hover {
+      background-color: darken($primary_color, 10%);
+    }
+  }
+
+  &.outline-light {
+    background-color: transparent;
+    border: 1px solid $secondary_color;
+    color: $secondary_color;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+  }
+
+  &.text {
+    background-color: transparent;
+    border: none;
+    color: white;
+
+    &:hover {
+      color: lighten($primary_color, 20%);
+    }
+  }
+
+  &:disabled {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
