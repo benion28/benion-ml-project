@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap'; // Bootstrap grid
 import { Menu, Drawer } from 'antd'; // Ant Design components
 import { MenuOutlined, CustomerServiceOutlined, LoginOutlined, DashboardOutlined, LogoutOutlined } from '@ant-design/icons'; // Ant Design icons
 import ActionButton from './inputs/ActionButton'; // Reusable Button Component
-import AiHeaderIcon from '../assests/svgs/ai-header-icon.svg';
+import AiHeaderIcon from '../assests/svgs/Benion-Tech-AI-Icon.svg';
 import '../styles/header.scss';
 
 const Header = () => {
