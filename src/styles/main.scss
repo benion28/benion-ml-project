@@ -1,14 +1,34 @@
 @import './global'; // Importing global.scss
 
+// Global body styles
 body {
   font-family: Arial, sans-serif;
-  background-color: $secondary-color;
+  background-color: $primary_color;
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+// Set box-sizing globally for all elements
+*, *::before, *::after {
+  box-sizing: inherit;
 }
+
+// Remove default margin and padding for html and body
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+// Style for containers to avoid unwanted space
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Additional utility styles can go here

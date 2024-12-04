@@ -5,14 +5,31 @@
   bottom: 0;
   width: 100%;
   background-color: transparent;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   padding: 20px 0;
 
   &.scrolled {
-    background-color: $primary_color; // Set primary_color when at the bottom
+    background-color: $secondary_color; // Change background to secondary_color
+    color: $primary_color; // Update text color for visibility
   }
 
   .container {
     text-align: center;
+
+    p {
+      margin: 0;
+
+      &.text-secondary {
+        color: $tertiary_color; // Default color
+      }
+
+      &.scrolled {
+        color: $primary_color; // Adjust text color for scrolled state
+      }
+
+      span.text-primary {
+        color: $tertiary_color2; // Keep the highlighted text visible
+      }
+    }
   }
 }

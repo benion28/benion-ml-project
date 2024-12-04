@@ -5,6 +5,7 @@ import { MenuOutlined, CustomerServiceOutlined, LoginOutlined, DashboardOutlined
 import ActionButton from './inputs/ActionButton'; // Reusable Button Component
 import AiHeaderIcon from '../assests/svgs/Benion-Tech-AI-Icon.svg';
 import '../styles/header.scss';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { Item } = Menu;
@@ -35,14 +36,16 @@ const Header = () => {
       <div className="container py-3">
         <Row className="align-items-center">
           {/* Logo Section */}
-          <Col xs={6} md={4} className="d-flex align-items-center">
-            <img
-              src={AiHeaderIcon}
-              alt="Logo"
-              className="me-2 filter-white"
-              style={{ width: '50px', height: 'auto' }}
-            />
-            <span className="fs-5 fw-bold text-white">BenTelligence</span>
+          <Col xs={6} md={4} className="d-flex align-items-center logo-container">
+            <Link className='text-decoration-none' to="/">
+              <img
+                src={AiHeaderIcon}
+                alt="Logo"
+                className="me-2 filter-white"
+                style={{ width: '50px', height: 'auto' }}
+              />
+              <span className="fs-5 fw-bold text-white">BenTelligence</span>
+            </Link>
           </Col>
 
           {/* Desktop Navigation Menu */}
@@ -78,7 +81,6 @@ const Header = () => {
             {authenticated ? (
               <ActionButton
                 className="btn-purchase-now me-3 rounded-pill"
-                variant="primary"
                 icon={<DashboardOutlined />}
               >
                 Dashboard
@@ -86,7 +88,6 @@ const Header = () => {
             ) : (
               <ActionButton
                 className="btn-purchase-now me-3 rounded-pill"
-                variant="primary"
                 icon={<LoginOutlined />}
                 onClick={() => setAuthenticated(true)}
               >
@@ -132,39 +133,38 @@ const Header = () => {
         </Menu>
         <div className="px-4 mt-3">
           <ActionButton
-            className="btn-outline-light me-3 rounded-pill w-100"
+            className="btn-support me-3 rounded-pill w-100"
             icon={<CustomerServiceOutlined />}
             onClick={() => console.log('Support clicked')}
+            variant="outline-light"
+            type='primary'
           >
             Support
           </ActionButton>
           {authenticated ? (
             <Fragment>
               <ActionButton
-                className="rounded-pill w-100 mt-2"
-                variant="primary"
-                type='primary'
+                className="btn-purchase-now me-3 rounded-pill w-100 mt-2"
                 icon={<DashboardOutlined />}
+                variant="outline-light"
               >
                 Dashboard
               </ActionButton>
               <ActionButton
-                className="rounded-pill w-100 mt-2"
-                variant="primary"
-                type='primary'
+                className="btn-purchase-now me-3 rounded-pill w-100 mt-2"
                 onClick={() => setAuthenticated(false)}
                 icon={<LogoutOutlined />}
+                variant="outline-light"
               >
                 Logout
               </ActionButton>
             </Fragment>
           ) : (
             <ActionButton
-              className="rounded-pill w-100 mt-2"
-              variant="primary"
-              type='primary'
+              className="btn-purchase-now me-3 rounded-pill w-100 mt-2"
               icon={<LoginOutlined />}
               onClick={() => setAuthenticated(true)}
+              variant="outline-light"
             >
               Login
             </ActionButton>
