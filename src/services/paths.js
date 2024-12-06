@@ -8,6 +8,7 @@ const paths = {
     aboutUrl: '/about',
     contactUrl: '/contact',
     faqUrl: '/faq',
+    exampleUrl: '/example'
 }
 
 module.exports = paths

@@ -6,6 +6,7 @@ import ActionButton from './inputs/ActionButton'; // Reusable Button Component
 import AiHeaderIcon from '../assests/svgs/Benion-Tech-AI-Icon.svg';
 import '../styles/header.scss';
 import { Link } from 'react-router-dom';
+import { dashboardUrl } from '../services/paths';
 
 const Header = () => {
   const { Item } = Menu;
@@ -55,17 +56,12 @@ const Header = () => {
               theme="dark"
               className="border-0 bg-transparent"
               selectable={false}
-            >
-              <Item key="home" className="text-white menu-item">
-                Home
-              </Item>
-              <Item key="features" className="text-white menu-item">
-                Features
-              </Item>
-              <Item key="documentation" className="text-white menu-item">
-                Documentation
-              </Item>
-            </Menu>
+              items={[
+                { key: 'home', label: 'Home', className: 'text-white menu-item' },
+                { key: 'features', label: 'Features', className: 'text-white menu-item' },
+                { key: 'documentation', label: 'Documentation', className: 'text-white menu-item' },
+              ]}
+            />
           </Col>
 
           {/* Action Buttons */}
@@ -79,12 +75,14 @@ const Header = () => {
               Support
             </ActionButton>
             {authenticated ? (
-              <ActionButton
-                className="btn-purchase-now me-3 rounded-pill"
-                icon={<DashboardOutlined />}
-              >
-                Dashboard
-              </ActionButton>
+              <Link to={dashboardUrl}>
+                <ActionButton
+                  className="btn-purchase-now me-3 rounded-pill"
+                  icon={<DashboardOutlined />}
+                >
+                  Dashboard
+                </ActionButton>
+              </Link>
             ) : (
               <ActionButton
                 className="btn-purchase-now me-3 rounded-pill"
@@ -112,25 +110,24 @@ const Header = () => {
         title="Menu"
         placement="right"
         onClose={closeDrawer}
-        visible={drawerVisible}
-        bodyStyle={{ padding: 0, backgroundColor: '#1c1c3c' }} // Matches the header background
-        headerStyle={{ backgroundColor: '#1c1c3c', color: 'white' }} // Ensures header consistency
+        open={drawerVisible}
+        styles={{
+          body: { padding: 0, backgroundColor: '#1c1c3c' }, // Matches the header background
+          header: { backgroundColor: '#1c1c3c', color: 'white' }, // Ensures header consistency
+        }}
         closeIcon={<span style={{ color: 'white' }}>X</span>} // White close button
       >
-        <Menu mode="vertical" theme="dark" className="border-0 bg-transparent">
-          <Item key="home" className="text-white menu-item">
-            Home
-          </Item>
-          <Item key="demos" className="text-white menu-item">
-            Demos
-          </Item>
-          <Item key="features" className="text-white menu-item">
-            Features
-          </Item>
-          <Item key="documentation" className="text-white menu-item">
-            Documentation
-          </Item>
-        </Menu>
+        <Menu
+          mode="vertical"
+          theme="dark"
+          className="border-0 bg-transparent"
+          items={[
+            { key: 'home', label: 'Home', className: 'text-white menu-item' },
+            { key: 'demos', label: 'Demos', className: 'text-white menu-item' },
+            { key: 'features', label: 'Features', className: 'text-white menu-item' },
+            { key: 'documentation', label: 'Documentation', className: 'text-white menu-item' },
+          ]}
+        />
         <div className="px-4 mt-3">
           <ActionButton
             className="btn-support me-3 rounded-pill w-100"
@@ -143,13 +140,15 @@ const Header = () => {
           </ActionButton>
           {authenticated ? (
             <Fragment>
-              <ActionButton
-                className="btn-purchase-now me-3 rounded-pill w-100 mt-2"
-                icon={<DashboardOutlined />}
-                variant="outline-light"
-              >
-                Dashboard
-              </ActionButton>
+              <Link to={dashboardUrl}>
+                <ActionButton
+                  className="btn-purchase-now me-3 rounded-pill w-100 mt-2"
+                  icon={<DashboardOutlined />}
+                  variant="outline-light"
+                >
+                  Dashboard
+                </ActionButton>
+              </Link>
               <ActionButton
                 className="btn-purchase-now me-3 rounded-pill w-100 mt-2"
                 onClick={() => setAuthenticated(false)}

@@ -3,8 +3,10 @@ import Homepage from './pages/Homepage';
 import ScrollToTop from './ScrollToTop';
 import { Layout } from 'antd';
 import { Route, Routes } from 'react-router-dom';
-import { homeUrl } from '../services/paths';
+import { dashboardUrl, exampleUrl, homeUrl } from '../services/paths';
 import Loader from './Loader'; // Import the loader component
+import ExampleComponent from './pages/ExampleComponent';
+import Dashboard from './pages/Dashboard';
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +25,8 @@ const Main = () => {
       {isLoading && <Loader />} {/* Show the loader if isLoading is true */}
       <Routes>
         <Route exact path={homeUrl} element={<Homepage />} />
+        <Route exact path={dashboardUrl} element={<Dashboard />} />
+        <Route exact path={exampleUrl} element={<ExampleComponent />} />
       </Routes>
       <ScrollToTop />
     </Layout>

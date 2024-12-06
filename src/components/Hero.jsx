@@ -32,7 +32,7 @@ const Hero = () => {
             <div className="mt-4">
               <ActionButton
                 className="btn-explore-layout me-3 mb-1"
-                variant="outline"
+                variant="outline-light"
                 style={{ padding: '0.6rem 1.5rem', borderRadius: '30px' }}
                 type="button"
                 icon={null}
