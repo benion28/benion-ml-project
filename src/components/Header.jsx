@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { dashboardUrl } from '../services/paths';
 
 const Header = () => {
-  const { Item } = Menu;
   const { Fragment } = React;
   const [isScrolled, setIsScrolled] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
