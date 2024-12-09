@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from './components/Footer';
-import Header from './components/Header';
 import Main from './components/Main';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 
 function App() {
   const { Fragment } = React

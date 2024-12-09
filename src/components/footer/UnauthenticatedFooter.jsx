@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/footer.scss'; // Assuming the styles for the footer
+import '../../styles/unauthenticated-footer.scss';
 
-const Footer = () => {
-  const [isAtBottom, setIsAtBottom] = useState(false);
+
+const UnauthenticatedFooter = () => {
+    const [isAtBottom, setIsAtBottom] = useState(false);
   const date = new Date();
 
   const handleScroll = () => {
@@ -31,4 +32,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default UnauthenticatedFooter

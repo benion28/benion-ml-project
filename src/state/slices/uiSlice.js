@@ -4,14 +4,14 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState: {
     isModalOpen: false,
-    theme: 'light', // 'dark' can be an alternative
+    theme: 'light', // Default theme is 'light'
   },
   reducers: {
     toggleModal: (state) => {
       state.isModalOpen = !state.isModalOpen;
     },
     setTheme: (state, action) => {
-      state.theme = action.payload; // e.g., 'light' or 'dark'
+      state.theme = action.payload; // Set theme to either 'light' or 'dark'
     },
   },
 });

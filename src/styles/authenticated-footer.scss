@@ -1,0 +1,40 @@
+@import './global'; // Import global styles
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 20px 0;
+
+  &.light {
+    background-color: $secondary_color !important; // Light mode background
+    color: $primary_color !important; // Light mode text color
+  }
+
+  &.dark {
+    background-color: $primary_color !important; // Dark mode background
+    color: $secondary_color !important; // Dark mode text color
+  }
+
+  .container {
+    text-align: center;
+
+    p {
+      margin: 0;
+
+      &.text-dark {
+        color: $secondary_color !important; // Dark mode text color
+      }
+
+      &.scrolled {
+        color: $tertiary_color2; // Ensure a contrast color when scrolled
+      }
+
+      span.text-primary {
+        color: $tertiary_color2; // Keep primary color visible
+      }
+    }
+  }
+}

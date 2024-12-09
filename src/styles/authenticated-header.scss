@@ -1,0 +1,62 @@
+@import './global'; // Import global styles
+
+.authenticated-header {
+  background-color: $primary_color;
+  color: $secondary_color;
+
+  &.dark {
+    background-color: $primary_color; // Dark mode background
+    color: $secondary_color; // Dark mode text
+  }
+
+  &.light {
+    background-color: $secondary_color; // Light mode background
+    color: $primary_color; // Light mode text
+  }
+
+  .menu-item {
+    color: inherit;
+    padding: 0 20px;
+
+    &:hover {
+      color: $tertiary_color2;
+    }
+  }
+
+  .search-input {
+    background-color: $secondary_color;
+    border-color: $secondary_color;
+    color: white;
+    width: 200px;
+    margin-right: 20px;
+
+    &.light {
+      background-color: $primary_color;
+      border-color: $primary_color;
+    }
+  }
+
+  .avatar {
+    background-color: $secondary_color;
+
+    &.light {
+      background-color: $primary_color;
+    }
+  }
+
+  .theme-toggle {
+    background-color: $tertiary_color;
+    border-color: $tertiary_color;
+
+    .ant-switch-inner {
+      color: $primary_color;
+    }
+
+    &.light {
+      background-color: $tertiary_color2;
+      .ant-switch-inner {
+        color: $secondary_color;
+      }
+    }
+  }
+}

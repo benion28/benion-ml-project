@@ -11,6 +11,11 @@
   transition: background-color 0.3s ease;
   padding: 10px 0; // Adjust padding to your preference
 
+  .logo-img {
+    width: 50px;
+    height: auto;
+  }
+
   &.scrolled {
     background-color: darken($color: $primary_color, $amount: 10); // Primary color for header background
   }
@@ -59,7 +64,7 @@
   }
 
   .btn-purchase-now {
-    background-color: $tertiary_color;
+    background-color: $tertiary_color !important;
     border-color: $secondary_color;
     color: $secondary_color;
 
