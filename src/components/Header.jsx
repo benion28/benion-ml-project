@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap'; // Bootstrap grid
-import { Menu, Drawer } from 'antd'; // Ant Design components
-import { MenuOutlined, CustomerServiceOutlined, LoginOutlined, DashboardOutlined, LogoutOutlined } from '@ant-design/icons'; // Ant Design icons
-import ActionButton from './inputs/ActionButton'; // Reusable Button Component
+import { Row, Col } from 'react-bootstrap';
+import { Drawer } from 'antd';
+import { 
+  MenuOutlined, 
+  CustomerServiceOutlined, 
+  LoginOutlined, 
+  DashboardOutlined, 
+  LogoutOutlined 
+} from '@ant-design/icons';
 import AiHeaderIcon from '../assests/svgs/Benion-Tech-AI-Icon.svg';
 import '../styles/header.scss';
 import { Link } from 'react-router-dom';
 import { dashboardUrl } from '../services/paths';
+import MenuComponent from './custom/MenuComponent';
+import ActionButton from './custom/ActionButton';
 
 const Header = () => {
   const { Fragment } = React;
@@ -23,13 +30,14 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const showDrawer = () => {
-    setDrawerVisible(true);
-  };
+  const showDrawer = () => setDrawerVisible(true);
+  const closeDrawer = () => setDrawerVisible(false);
 
-  const closeDrawer = () => {
-    setDrawerVisible(false);
-  };
+  const menuItems = [
+    { key: 'home', label: 'Home', className: 'text-white menu-item' },
+    { key: 'features', label: 'Features', className: 'text-white menu-item' },
+    { key: 'documentation', label: 'Documentation', className: 'text-white menu-item' },
+  ];
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
@@ -37,7 +45,7 @@ const Header = () => {
         <Row className="align-items-center">
           {/* Logo Section */}
           <Col xs={6} md={4} className="d-flex align-items-center logo-container">
-            <Link className='text-decoration-none' to="/">
+            <Link className="text-decoration-none" to="/">
               <img
                 src={AiHeaderIcon}
                 alt="Logo"
@@ -50,16 +58,11 @@ const Header = () => {
 
           {/* Desktop Navigation Menu */}
           <Col md={4} className="d-none d-md-flex justify-content-center">
-            <Menu
+            <MenuComponent
               mode="horizontal"
               theme="dark"
               className="border-0 bg-transparent"
-              selectable={false}
-              items={[
-                { key: 'home', label: 'Home', className: 'text-white menu-item' },
-                { key: 'features', label: 'Features', className: 'text-white menu-item' },
-                { key: 'documentation', label: 'Documentation', className: 'text-white menu-item' },
-              ]}
+              items={menuItems}
             />
           </Col>
 
@@ -111,20 +114,18 @@ const Header = () => {
         onClose={closeDrawer}
         open={drawerVisible}
         styles={{
-          body: { padding: 0, backgroundColor: '#1c1c3c' }, // Matches the header background
-          header: { backgroundColor: '#1c1c3c', color: 'white' }, // Ensures header consistency
+          body: { padding: 0, backgroundColor: '#1c1c3c' },
+          header: { backgroundColor: '#1c1c3c', color: 'white' },
         }}
-        closeIcon={<span style={{ color: 'white' }}>X</span>} // White close button
+        closeIcon={<span style={{ color: 'white' }}>X</span>}
       >
-        <Menu
+        <MenuComponent
           mode="vertical"
           theme="dark"
           className="border-0 bg-transparent"
           items={[
-            { key: 'home', label: 'Home', className: 'text-white menu-item' },
+            ...menuItems,
             { key: 'demos', label: 'Demos', className: 'text-white menu-item' },
-            { key: 'features', label: 'Features', className: 'text-white menu-item' },
-            { key: 'documentation', label: 'Documentation', className: 'text-white menu-item' },
           ]}
         />
         <div className="px-4 mt-3">
@@ -133,7 +134,6 @@ const Header = () => {
             icon={<CustomerServiceOutlined />}
             onClick={() => console.log('Support clicked')}
             variant="outline-light"
-            type='primary'
           >
             Support
           </ActionButton>

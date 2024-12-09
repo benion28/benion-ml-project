@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
+const { error: toastError } = toast
 
 const axiosInstance = axios.create({
   baseURL: 'https://benion-tech-server.onrender.com', // Replace with your API base URL
@@ -27,9 +30,18 @@ axiosInstance.interceptors.response.use(
     // Handle errors globally (e.g., logout on 401)
     if (error.response?.status === 401) {
       // Handle unauthorized access
-      console.error('Unauthorized, logging out...');
+      toastError('Unauthorized, logging out...')
+      console.error('Unauthorized, logging out...')
+    } else if (error.response?.status === 403) {
+      // Handle forbidden access
+      toastError('Forbidden, logging out...')
+      console.error('Forbidden, logging out...')
+    } else {
+      // Handle other errors
+      console.error('Error:', error.response?.data);
+      toastError(error.message)
     }
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
 );
 

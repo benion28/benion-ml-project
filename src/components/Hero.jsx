@@ -3,8 +3,8 @@ import { Row, Col } from 'react-bootstrap';
 import TypingEffect from './TypingEffect';
 import '../styles/hero.scss';
 import Hero1 from '../assests/images/hero-1.jpg';
-import ActionButton from './inputs/ActionButton';
 import { RightCircleOutlined } from '@ant-design/icons';
+import ActionButton from './custom/ActionButton';
 
 const Hero = () => {
   return (

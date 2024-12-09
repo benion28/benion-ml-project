@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import apiReducer from './slices/apiSlice';
+import usersReducer from './slices/usersSlice';
 import uiReducer from './slices/uiSlice';
 
 const store = configureStore({
   reducer: {
-    api: apiReducer,
+    users: usersReducer,
     ui: uiReducer,
   },
 });

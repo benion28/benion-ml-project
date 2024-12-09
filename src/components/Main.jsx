@@ -7,6 +7,9 @@ import { dashboardUrl, exampleUrl, homeUrl } from '../services/paths';
 import Loader from './Loader'; // Import the loader component
 import ExampleComponent from './pages/ExampleComponent';
 import Dashboard from './pages/Dashboard';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +26,7 @@ const Main = () => {
   return (
     <Layout>
       {isLoading && <Loader />} {/* Show the loader if isLoading is true */}
+      <ToastContainer />
       <Routes>
         <Route exact path={homeUrl} element={<Homepage />} />
         <Route exact path={dashboardUrl} element={<Dashboard />} />

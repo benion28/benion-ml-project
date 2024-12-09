@@ -1,27 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const apiSlice = createSlice({
-  name: 'api',
+const usersSlice = createSlice({
+  name: 'users',
   initialState: {
     isLoading: false,
     data: null,
     error: null,
   },
   reducers: {
-    apiRequestStart: (state) => {
+    usersRequestStart: (state) => {
       state.isLoading = true;
       state.error = null;
     },
-    apiRequestSuccess: (state, action) => {
+    usersRequestSuccess: (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
     },
-    apiRequestFail: (state, action) => {
+    usersRequestFail: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
   },
 });
 
-export const { apiRequestStart, apiRequestSuccess, apiRequestFail } = apiSlice.actions;
-export default apiSlice.reducer;
+export const { usersRequestStart, usersRequestSuccess, usersRequestFail } = usersSlice.actions;
+export default usersSlice.reducer;
