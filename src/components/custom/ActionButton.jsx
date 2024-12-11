@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
-import '../../styles/actionButton.scss';
+import '../../styles/action-button.scss';
 
 const ActionButton = ({
   className = '',

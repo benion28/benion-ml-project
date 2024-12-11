@@ -1,47 +1,82 @@
 @import './global'; // Import global styles
 
 .authenticated-header {
-  background-color: $primary_color;
-  color: $secondary_color;
-
   &.dark {
-    background-color: $primary_color; // Dark mode background
-    color: $secondary_color; // Dark mode text
-  }
+    background-color: $primary_color; 
+    color: $secondary_color;
 
-  &.light {
-    background-color: $secondary_color; // Light mode background
-    color: $primary_color; // Light mode text
-  }
+    .logo-container {
+      img {
+        filter: brightness(0) saturate(100%) invert(85%) sepia(8%) saturate(131%) hue-rotate(180deg) brightness(110%) contrast(110%);
+      }
+    }
 
-  .menu-item {
-    color: inherit;
-    padding: 0 20px;
+    .ant-menu-item {
+      color: $secondary_color !important;
 
-    &:hover {
-      color: $tertiary_color2;
+      &:hover {
+        color: $warning_color !important;
+        border-bottom: 2px solid $success_color !important;
+      }
+    }
+
+    .logo-text {
+      color: $secondary_color !important;
+
+      &:hover {
+        color: $warning_color !important;
+      }
+    }
+
+    .search-input {
+      border-color: $secondary_color;
+      background-color: $primary_color;
+    }
+
+    .avatar {
+      border-color: $secondary_color;
     }
   }
 
-  .search-input {
+  &.light {
     background-color: $secondary_color;
-    border-color: $secondary_color;
-    color: white;
-    width: 200px;
-    margin-right: 20px;
+    color: $primary_color;
 
-    &.light {
-      background-color: $primary_color;
+    .ant-menu-item {
+      color: $primary_color !important;
+
+      &:hover {
+        color: $success_color2 !important;
+      }
+    }
+
+    .logo-text {
+      color: $primary_color !important;
+
+      &:hover {
+        color: $success_color2 !important;
+      }
+    }
+
+    .search-input {
+      border-color: $primary_color;
+      background-color: $secondary_color;
+    }
+
+    .avatar {
       border-color: $primary_color;
     }
   }
 
-  .avatar {
-    background-color: $secondary_color;
+  .search-input {
+    width: 200px;
+    margin-right: 20px;
+  }
 
-    &.light {
-      background-color: $primary_color;
-    }
+  .avatar {
+    border-radius: 50%;  // Make avatar round
+    padding: 5px; // Optional padding to keep the shape neat
+    cursor: pointer;
   }
 
   .theme-toggle {

@@ -26,7 +26,7 @@
   }
 
   .menu-item {
-    color: $secondary_color;
+    color: $secondary_color !important;
     position: relative;
     display: inline-block;
     font-weight: bolder;

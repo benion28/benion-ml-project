@@ -1,35 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { Menu, Avatar, Dropdown, Input, Switch } from 'antd';
-import { HomeOutlined, BulbOutlined, BulbFilled } from '@ant-design/icons';
+import { Avatar, Dropdown, Input, Switch } from 'antd';
+import { BulbOutlined, BulbFilled, HomeOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../../state/slices/uiSlice';
 import '../../styles/authenticated-header.scss';
 import AiHeaderIcon from '../../assests/svgs/Benion-Tech-AI-Icon.svg';
+import BenionAvatar from '../../assests/images/benion-avatar.jpg';
 import { Link } from 'react-router-dom';
+import MenuComponent from '../custom/MenuComponent';
 
 const AuthenticatedHeader = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.ui.theme);
 
-  const menu = (
-    <Menu>
-      <Menu.Item key="profile">
-        <Link to="/profile">Profile</Link>
-      </Menu.Item>
-      <Menu.Item key="settings">
-        <Link to="/settings">Settings</Link>
-      </Menu.Item>
-      <Menu.Item key="logout">
-        <Link to="/" onClick={() => console.log('Logging out')}>Logout</Link>
-      </Menu.Item>
-    </Menu>
-  );
+  const menuItems = [
+    { key: 'home', label: 'Home', icon: <HomeOutlined /> },
+    { key: 'calendar', label: 'Calendar', icon: <HomeOutlined /> },
+    { key: 'people', label: 'People', icon: <HomeOutlined /> },
+    { key: 'billing', label: 'Billing', icon: <HomeOutlined /> },
+    { key: 'settings', label: 'Settings', icon: <HomeOutlined /> },
+  ];
 
   const handleThemeToggle = (checked) => {
     const newTheme = checked ? 'dark' : 'light';
     dispatch(setTheme(newTheme)); // Dispatch theme change action
   };
+
+  const profileMenu = (
+    <MenuComponent
+      mode="vertical"
+      theme={theme}
+      items={[
+        { key: 'profile', label: <Link to="/profile">Profile</Link> },
+        { key: 'settings', label: <Link to="/settings">Settings</Link> },
+        { key: 'logout', label: <Link to="/" onClick={() => console.log('Logging out')}>Logout</Link> },
+      ]}
+    />
+  );
 
   return (
     <header className={`header authenticated-header ${theme}`}>
@@ -39,27 +47,21 @@ const AuthenticatedHeader = () => {
           <Col xs={6} md={3} className="d-flex align-items-center logo-container">
             <Link className="text-decoration-none" to="/">
               <img src={AiHeaderIcon} alt="Logo" className="me-2 logo-img" />
-              <span className="fs-5 fw-bold text-white">BenTelligence</span>
+              <span className={`fs-5 fw-bold logo-text`}>BenTelligence</span>
             </Link>
           </Col>
 
           {/* Navigation Menu */}
           <Col md={6} className="d-flex justify-content-center">
-            <Menu mode="horizontal" theme={theme} className="border-0 bg-transparent menu">
-              <Menu.Item key="home" icon={<HomeOutlined />} className="menu-item">Home</Menu.Item>
-              <Menu.Item key="calendar" icon={<HomeOutlined />} className="menu-item">Calendar</Menu.Item>
-              <Menu.Item key="people" icon={<HomeOutlined />} className="menu-item">People</Menu.Item>
-              <Menu.Item key="billing" icon={<HomeOutlined />} className="menu-item">Billing</Menu.Item>
-              <Menu.Item key="settings" icon={<HomeOutlined />} className="menu-item">Settings</Menu.Item>
-            </Menu>
+            <MenuComponent mode="horizontal" theme={theme} className="border-0 bg-transparent fw-bold menu" items={menuItems} />
           </Col>
 
           {/* Profile, Search, and Theme Toggle */}
           <Col md={3} className="d-flex justify-content-end align-items-center">
             {/* Search bar */}
             <Input.Search placeholder="Search..." className="search-input" />
-            <Dropdown overlay={menu} trigger={['click']}>
-              <Avatar size={32} className="avatar" />
+            <Dropdown menu={profileMenu} trigger={['click']}>
+              <Avatar size={32} src={BenionAvatar} className="avatar" />
             </Dropdown>
             {/* Theme Toggle */}
             <Switch

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import PropTypes from 'prop-types';
+import '../../styles/menu-component.scss';
 
 const MenuComponent = ({ mode, theme, className, items }) => {
   return (
