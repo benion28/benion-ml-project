@@ -9,6 +9,7 @@ import AiHeaderIcon from '../../assests/svgs/Benion-Tech-AI-Icon.svg';
 import BenionAvatar from '../../assests/images/benion-avatar.jpg';
 import { Link } from 'react-router-dom';
 import MenuComponent from '../custom/MenuComponent';
+import TextInput from '../custom/TextInput';
 
 const AuthenticatedHeader = () => {
   const dispatch = useDispatch();
@@ -59,9 +60,12 @@ const AuthenticatedHeader = () => {
           {/* Profile, Search, and Theme Toggle */}
           <Col md={3} className="d-flex justify-content-end align-items-center">
             {/* Search bar */}
-            <Input.Search placeholder="Search..." className="search-input" />
+            <TextInput isSearch={true} onChange={(e) => console.log(e.target.value)} placeholder="Search..." className="search-input" />
+            {/* <Input.Search onChange={(e) => console.log(e.target.value)} placeholder="Search..." className="search-input" /> */}
             <Dropdown menu={profileMenu} trigger={['click']}>
-              <Avatar size={32} src={BenionAvatar} className="avatar" />
+              <div className="avatar">
+                <Avatar size={32} src={BenionAvatar} />
+              </div>
             </Dropdown>
             {/* Theme Toggle */}
             <Switch

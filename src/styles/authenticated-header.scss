@@ -8,6 +8,11 @@
     .logo-container {
       img {
         filter: brightness(0) saturate(100%) invert(85%) sepia(8%) saturate(131%) hue-rotate(180deg) brightness(110%) contrast(110%);
+        transition: filter 0.3s ease;
+
+        &:hover {
+          filter: brightness(0) saturate(100%) invert(76%) sepia(55%) saturate(417%) hue-rotate(14deg) brightness(98%) contrast(102%);
+        }
       }
     }
 
@@ -26,15 +31,6 @@
       &:hover {
         color: $warning_color !important;
       }
-    }
-
-    .search-input {
-      border-color: $secondary_color;
-      background-color: $primary_color;
-    }
-
-    .avatar {
-      border-color: $secondary_color;
     }
   }
 
@@ -58,25 +54,39 @@
       }
     }
 
-    .search-input {
-      border-color: $primary_color;
-      background-color: $secondary_color;
-    }
+    .logo-container {
+      img {
+        filter: brightness(0) saturate(100%) invert(12%) sepia(95%) saturate(420%) hue-rotate(92deg) brightness(65%) contrast(120%);
+        transition: filter 0.3s ease;
 
-    .avatar {
-      border-color: $primary_color;
+        &:hover {
+          filter: brightness(0) saturate(100%) invert(16%) sepia(92%) saturate(449%) hue-rotate(92deg) brightness(87%) contrast(98%);
+        }
+      }
     }
   }
 
   .search-input {
     width: 200px;
     margin-right: 20px;
+    border: none;
   }
 
   .avatar {
-    border-radius: 50%;  // Make avatar round
-    padding: 5px; // Optional padding to keep the shape neat
+    width: 40px; // Adjust size as needed
+    height: 40px; // Adjust size as needed
+    border-radius: 50%; // Ensure it's circular
+    overflow: hidden; // Clip the image to fit the container
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Ensures the image scales to fill the container
+    }
   }
 
   .theme-toggle {
