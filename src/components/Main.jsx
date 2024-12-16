@@ -4,10 +4,11 @@ import ScrollToTop from './ScrollToTop';
 import { Layout } from 'antd';
 import { Route, Routes } from 'react-router-dom';
 import { dashboardUrl, exampleUrl, homeUrl } from '../services/paths';
-import Loader from './Loader'; // Import the loader component
+import Loader from './custom/Loader'; // Import the loader component
 import ExampleComponent from './pages/ExampleComponent';
 import Dashboard from './pages/Dashboard';
 import 'react-toastify/dist/ReactToastify.css';
+import { LoadingOutlined } from '@ant-design/icons';
 import { ToastContainer } from 'react-toastify';
 
 
@@ -25,7 +26,11 @@ const Main = () => {
 
   return (
     <Layout>
-      {isLoading && <Loader />} {/* Show the loader if isLoading is true */}
+      {isLoading && 
+        <div className="loader-container">
+          <Loader size='large' tip="Loading, please wait..." />
+        </div>
+      } {/* Show the loader if isLoading is true */}
       <ToastContainer />
       <Routes>
         <Route exact path={homeUrl} element={<Homepage />} />

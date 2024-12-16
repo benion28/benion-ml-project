@@ -119,6 +119,7 @@
     display: flex;
     align-items: center;
     transition: color 0.3s ease;
+    text-decoration: none;
 
     &:hover {
       color: $tertiary_color2;
@@ -139,5 +140,92 @@
         color: $tertiary_color2 !important;
       }
     }
+  }
+}
+
+.mobile-menu-logo {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: $tertiary_color2;
+  }
+
+  img {
+    width: 40px;
+    margin-right: 10px;
+    transition: filter 0.3s ease;
+    filter: brightness(0) saturate(100%) invert(85%) sepia(8%) saturate(131%) hue-rotate(180deg) brightness(110%) contrast(110%);
+
+    &:hover {
+      filter: brightness(0) saturate(100%) invert(43%) sepia(35%) saturate(3353%) hue-rotate(163deg) brightness(107%) contrast(102%);
+    }
+  }
+
+  span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $tertiary_color2 !important;
+    }
+  }
+}
+
+.mobile-menu-actions {
+  .btn-support {
+    border: 2px solid $secondary_color;
+    color: $secondary_color;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $tertiary_color !important;
+      border-color: $secondary_color !important;
+      color: $secondary_color !important;
+    }
+  }
+
+  .btn-purchase-now {
+    background-color: $tertiary_color !important;
+    border-color: $secondary_color;
+    color: $secondary_color;
+
+    &:hover {
+      color: $secondary_color !important;
+      border: 2px solid $secondary_color !important;
+      background-color: transparent !important;
+    }
+  }
+}
+
+.menu-item {
+  color: $secondary_color !important;
+  position: relative;
+  display: inline-block;
+  font-weight: bolder;
+
+  &:hover {
+    color: $tertiary_color2 !important; // Highlight color on hover
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; // Line thickness
+    background-color: $tertiary_color2;
+    transition: width 0.3s ease, background-color 0.3s ease; // Smooth animation
+  }
+
+  &:hover::after {
+    width: 100%;
   }
 }
