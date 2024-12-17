@@ -31,7 +31,7 @@ const ActionButton = ({
 
 ActionButton.propTypes = {
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'outline-light', 'text']),
+  variant: PropTypes.oneOf(['primary', 'outline-light', 'text', 'outline-dark', 'normal']),
   onClick: PropTypes.func,
   style: PropTypes.object,
   type: PropTypes.oneOf(['button', 'primary', 'submit', 'reset']),

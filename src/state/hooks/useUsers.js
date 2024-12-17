@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { requestMethod } from '../../services/helpers';
 import usersRequest from '../requests/usersRequest';
 
-const useUser = () => {
+const useUsers = () => {
   const dispatch = useDispatch();
   const usersUrl = 'benion-users/api'
 
@@ -22,4 +22,4 @@ const useUser = () => {
   return makeUsersRequest
 }
 
-export default useUser
+export default useUsers

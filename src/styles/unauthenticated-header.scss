@@ -11,6 +11,22 @@
   transition: background-color 0.3s ease;
   padding: 10px 0; // Adjust padding to your preference
 
+  .auth-form {
+    h3 {
+      color: $primary_color;
+    }
+    .switch-link {
+      color: $secondary_color;
+      .cursor-pointer {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .divider-light {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
   .logo-img {
     width: 50px;
     height: auto;
@@ -48,38 +64,6 @@
 
     &:hover::after {
       width: 100%;
-    }
-  }
-
-  .btn-support {
-    border: 2px solid $secondary_color;
-    color: $secondary_color;
-    background-color: transparent;
-
-    &:hover {
-      background-color: $tertiary_color !important;
-      border-color: $secondary_color !important;
-      color: $secondary_color !important;
-    }
-  }
-
-  .btn-purchase-now {
-    background-color: $tertiary_color !important;
-    border-color: $secondary_color;
-    color: $secondary_color;
-
-    &:hover {
-      color: $secondary_color !important;
-      border: 2px solid $secondary_color !important;
-      background-color: transparent !important;
-    }
-  }
-
-  &.btn-primary {
-    background-color: $tertiary_color2;
-
-    &:hover {
-      background-color: darken($tertiary_color2, 10%); // Darker hover effect
     }
   }
 
@@ -143,6 +127,18 @@
   }
 }
 
+.mobile-menu {
+  .ant-menu-item {
+    color: $secondary_color !important;
+    font-weight: bold;
+
+    &:hover {
+      color: $warning_color !important;
+      border-bottom: 2px solid $success_color !important;
+    }
+  }
+}
+
 .mobile-menu-logo {
   display: flex;
   align-items: center;
@@ -178,54 +174,17 @@
   }
 }
 
-.mobile-menu-actions {
-  .btn-support {
-    border: 2px solid $secondary_color;
+.custom-modal .ant-modal-content {
+  background-color: $primary_color;
+  color: $secondary_color;
+
+  .ant-modal-header {
+    background-color: $primary_color;
     color: $secondary_color;
-    background-color: transparent;
-
-    &:hover {
-      background-color: $tertiary_color !important;
-      border-color: $secondary_color !important;
-      color: $secondary_color !important;
-    }
+    border-bottom: none;
   }
 
-  .btn-purchase-now {
-    background-color: $tertiary_color !important;
-    border-color: $secondary_color;
+  .ant-modal-close-icon {
     color: $secondary_color;
-
-    &:hover {
-      color: $secondary_color !important;
-      border: 2px solid $secondary_color !important;
-      background-color: transparent !important;
-    }
-  }
-}
-
-.menu-item {
-  color: $secondary_color !important;
-  position: relative;
-  display: inline-block;
-  font-weight: bolder;
-
-  &:hover {
-    color: $tertiary_color2 !important; // Highlight color on hover
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px; // Line thickness
-    background-color: $tertiary_color2;
-    transition: width 0.3s ease, background-color 0.3s ease; // Smooth animation
-  }
-
-  &:hover::after {
-    width: 100%;
   }
 }

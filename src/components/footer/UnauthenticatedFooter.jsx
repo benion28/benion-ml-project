@@ -3,7 +3,7 @@ import '../../styles/unauthenticated-footer.scss';
 
 
 const UnauthenticatedFooter = () => {
-    const [isAtBottom, setIsAtBottom] = useState(false);
+  const [isAtBottom, setIsAtBottom] = useState(false);
   const date = new Date();
 
   const handleScroll = () => {

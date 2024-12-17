@@ -3,7 +3,7 @@ import AuthenticatedHeader from './AuthenticatedHeader';
 import UnauthenticatedHeader from './UnauthenticatedHeader';
 
 const Header = () => {
-  const [authenticated, setAuthenticated] = useState(true); // Change to manage real authentication state
+  const [authenticated, setAuthenticated] = useState(false); // Change to manage real authentication state
 
   return (
     <div>

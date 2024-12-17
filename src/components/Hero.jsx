@@ -31,7 +31,7 @@ const Hero = () => {
             </p>
             <div className="mt-4">
               <ActionButton
-                className="btn-explore-layout me-3 mb-1"
+                className="me-3 mb-1"
                 variant="outline-light"
                 style={{ padding: '0.6rem 1.5rem', borderRadius: '30px' }}
                 type="button"
@@ -41,8 +41,8 @@ const Hero = () => {
                 Explore Layouts
               </ActionButton>
               <ActionButton
-                className="btn-get-it-now mb-1"
-                variant="primary"
+                className="mb-1"
+                variant="outline-dark"
                 style={{ padding: '0.6rem 1.5rem', borderRadius: '30px' }}
                 type="button"
                 icon={<RightCircleOutlined />}

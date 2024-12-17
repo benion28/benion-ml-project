@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { Avatar, Drawer, Dropdown, Input, Switch } from 'antd';
+import { Avatar, Drawer, Dropdown, Switch } from 'antd';
 import { BulbOutlined, BulbFilled, HomeOutlined, CloseOutlined, MenuOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../../state/slices/uiSlice';
@@ -19,6 +19,13 @@ const AuthenticatedHeader = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.ui.theme);
   const [drawerVisible, setDrawerVisible] = useState(false);
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+    console.log(e.target.value);
+  };
 
   const showDrawer = () => setDrawerVisible(true);
   const closeDrawer = () => setDrawerVisible(false);
@@ -51,14 +58,35 @@ const AuthenticatedHeader = () => {
   const otherSection = (
     <Fragment>
       {/* Search bar */}
-      <TextInput isSearch={true} onChange={(e) => console.log(e.target.value)} placeholder="Search..." className="search-input w-100" />
-      {/* <Input.Search onChange={(e) => console.log(e.target.value)} placeholder="Search..." className="search-input" /> */}
+      <TextInput 
+        type='search' 
+        value={searchTerm} 
+        isSearch={true} 
+        onChange={handleChange} 
+        placeholder="Search..." 
+        className="search-input w-100" 
+        allowClear={true} 
+      />
       {drawerVisible ? (
-        <Col xs={6} className="d-flex justify-content-end w-100 px-2 gap-1">
+        <Col xs={6} className="d-flex justify-content-end w-100 px-2 gap-1 mt-1">
           <Link to={paths.homeUrl}>
-            <ActionButton className="btn-support me-3 rounded-pill w-100" variant="primary" icon={<Avatar size={32} src={BenionAvatar} />} onClick={() => console.log('Support clicked')}>Profile</ActionButton>
+            <ActionButton 
+              className="rounded-pill w-100" 
+              variant={`${theme === 'dark' ? 'text' : 'outline-light'}`} 
+              icon={<Avatar size={32} src={BenionAvatar} />} 
+              onClick={() => console.log('Support clicked')}
+            >
+              Profile
+            </ActionButton>
           </Link>
-          <ActionButton className="btn-purchase-now me-3 rounded-pill w-100" variant="primary" icon={<LogoutOutlined />} onClick={() => console.log('Support clicked')}>Logout</ActionButton>
+          <ActionButton 
+            className="rounded-pill w-100" 
+            variant={`${theme === 'dark' ? 'outline-dark' : 'primary'}`} 
+            icon={<LogoutOutlined />} 
+            onClick={() => console.log('Support clicked')}
+          >
+            Logout
+          </ActionButton>
         </Col>
         ) : (
         <Dropdown menu={profileMenu} trigger={['click']}>
@@ -92,7 +120,12 @@ const AuthenticatedHeader = () => {
           
           {/* Desktop Navigation Menu */}
           <Col md={6} className="d-none d-md-flex justify-content-center">
-            <MenuComponent mode="horizontal" theme={theme} className="border-0 bg-transparent fw-bold menu" items={menuItems} />
+            <MenuComponent 
+              mode="horizontal" 
+              theme={theme} 
+              className="border-0 bg-transparent fw-bold menu" 
+              items={menuItems} 
+            />
           </Col>
 
           {/* Profile, Search, and Theme Toggle */}
@@ -103,9 +136,18 @@ const AuthenticatedHeader = () => {
           {/* Mobile Menu Toggle */}
           <Col xs={6} className="d-flex d-md-none justify-content-end">
             {drawerVisible ? 
-              <ActionButton variant="text" icon={<CloseOutlined style={{ color: getThemeColor(theme).color, fontSize: '24px' }} />} onClick={closeDrawer} />
+              <ActionButton 
+                variant="normal" 
+                icon={<CloseOutlined 
+                style={{ color: getThemeColor(theme).color, fontSize: '24px' }} />} 
+                onClick={closeDrawer} 
+              />
               : 
-              <ActionButton variant="text" icon={<MenuOutlined style={{ color: getThemeColor(theme).color, fontSize: '24px' }} />} onClick={showDrawer} />
+              <ActionButton 
+                variant="normal" 
+                icon={<MenuOutlined style={{ color: getThemeColor(theme).color, fontSize: '24px' }} />} 
+                onClick={showDrawer} 
+              />
             }
           </Col>
         </Row>
@@ -122,7 +164,7 @@ const AuthenticatedHeader = () => {
               body: { padding: 0, backgroundColor: getThemeColor(theme).backgroundColor },
               header: { backgroundColor: getThemeColor(theme).backgroundColor, color: getThemeColor(theme).color },
           }}
-          closeIcon={<CloseOutlined onClick={closeDrawer} style={{ color: getThemeColor(theme).color, cursor: 'pointer' }} />}
+          closeIcon={<CloseOutlined className='d-none' onClick={closeDrawer} style={{ color: getThemeColor(theme).color, cursor: 'pointer' }} />}
         >
           {/* Add Logo at the Top */}
           <Link to={paths.homeUrl} className="mobile-menu-logo px-4">
@@ -131,7 +173,12 @@ const AuthenticatedHeader = () => {
           </Link>
 
           {/* Mobile Menu Items */}
-          <MenuComponent mode="vertical" theme="dark" className="border-0 bg-transparent" items={menuItems} />
+          <MenuComponent 
+            mode="vertical" 
+            theme="dark" 
+            className="border-0 bg-transparent" 
+            items={menuItems} 
+          />
 
           {/* Profile, Search, and Theme Toggle */}
           {otherSection}

@@ -43,34 +43,17 @@
 
   // Action buttons
   .btn-explore-layout {
-    background-color: transparent;
-    border: 2px solid $secondary_color !important;
-    color: $secondary_color !important;
     padding: 0.6rem 1.5rem;
     font-weight: bold;
     border-radius: 30px;
     transition: all 0.3s ease;
-
-    &:hover {
-      background-color: $secondary_color !important;
-      color: $primary_color !important;
-    }
   }
 
   .btn-get-it-now {
-    background-color: $warning_color !important;
-    border: 2px solid $warning_color !important;
-    color: $primary_color !important;
     padding: 0.6rem 1.5rem;
     font-weight: bold;
     border-radius: 30px;
     transition: all 0.3s ease;
-
-    &:hover {
-      background-color: $primary_color !important;
-      border-color: $secondary_color !important;
-      color: $secondary_color !important;
-    }
 
     .anticon {
       font-size: 1.2rem;
