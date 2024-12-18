@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import useUser from '../../state/hooks/useUser';
+import useUser from '../../state/hooks/useUsers';
 
 const ExampleComponent = () => {
   const { data, isLoading, error } = useSelector((state) => state.users);

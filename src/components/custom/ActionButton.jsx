@@ -10,6 +10,8 @@ const ActionButton = ({
   style,
   type = 'button',
   icon,
+  htmlType,
+  form,
   disabled = false,
   children,
   ...props
@@ -21,6 +23,8 @@ const ActionButton = ({
       style={style}
       type={type}
       disabled={disabled}
+      htmlType={htmlType}
+      form={form}
       {...props}
     >
       {icon && <span className="button-icon">{icon}</span>} 
@@ -31,6 +35,8 @@ const ActionButton = ({
 
 ActionButton.propTypes = {
   className: PropTypes.string,
+  htmlType: PropTypes.string,
+  form: PropTypes.string,
   variant: PropTypes.oneOf(['primary', 'outline-light', 'text', 'outline-dark', 'normal']),
   onClick: PropTypes.func,
   style: PropTypes.object,

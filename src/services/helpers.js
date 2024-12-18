@@ -1,3 +1,5 @@
+import axiosInstance from "./axiosInstance";
+
 export const requestMethod = {
     get: 'GET',
     post: 'POST',
@@ -5,6 +7,22 @@ export const requestMethod = {
     delete: 'DELETE',
     patch: 'PATCH'
 }
+
+export const axiosMethods = {
+  get: axiosInstance.get,
+  post: axiosInstance.post,
+  put: axiosInstance.put,
+  delete: axiosInstance.delete,
+  patch: axiosInstance.patch,
+};
+
+export const methodMessages = {
+  get: 'Fetched',
+  post: 'Added',
+  put: 'Updated',
+  delete: 'Deleted',
+  patch: 'Updated',
+};
 
 export const primary_color = '#1c1c3c'
 export const secondary_color = '#dceff6'

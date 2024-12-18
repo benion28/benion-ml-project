@@ -16,6 +16,8 @@ const TextInput = ({
   isTextArea = false,
   isSearch = false,
   rows,
+  style,
+  title,
   maxLength,
   allowClear = false,
   className = '',
@@ -29,6 +31,9 @@ const TextInput = ({
       onFocus={onFocus}
       onBlur={onBlur}
       disabled={disabled}
+      style={style}
+      title={title}
+      title={title}
       rows={rows}
       maxLength={maxLength}
       className={`text-input ${className}`}
@@ -42,6 +47,8 @@ const TextInput = ({
       onChange={onChange}
       onFocus={onFocus}
       onBlur={onBlur}
+      style={style}
+      title={title}
       disabled={disabled}
       allowClear={allowClear}
       className={`text-input ${className}`}
@@ -56,6 +63,8 @@ const TextInput = ({
       onFocus={onFocus}
       onBlur={onBlur}
       disabled={disabled}
+      style={style}
+      title={title}
       allowClear={allowClear}
       maxLength={maxLength}
       className={`text-input ${className}`}
@@ -68,10 +77,12 @@ TextInput.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
+  title: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   disabled: PropTypes.bool,
+  style: PropTypes.object,
   isTextArea: PropTypes.bool,
   isSearch: PropTypes.bool,
   rows: PropTypes.number,
