@@ -5,23 +5,11 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999; // Ensures the header stays on top
+  // z-index: 9999; // Ensures the header stays on top
   width: 100%;
   background-color: transparent; // Change background when scrolled
   transition: background-color 0.3s ease;
   padding: 10px 0; // Adjust padding to your preference
-
-  .auth-form {
-    h3 {
-      color: $primary_color;
-    }
-    .switch-link {
-      color: $secondary_color;
-      .cursor-pointer {
-        cursor: pointer;
-      }
-    }
-  }
 
   .divider-light {
     border-color: rgba(255, 255, 255, 0.3);

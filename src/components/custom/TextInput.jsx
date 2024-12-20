@@ -33,7 +33,6 @@ const TextInput = ({
       disabled={disabled}
       style={style}
       title={title}
-      title={title}
       rows={rows}
       maxLength={maxLength}
       className={`text-input ${className}`}

@@ -44,3 +44,45 @@ html, body {
   justify-content: center;
   z-index: 9999;
 }
+
+.text-link {
+  color: $danger_color;
+  cursor: pointer;
+
+  &:hover {
+    color: $warning_color;
+  }
+}
+
+.auth-form {
+  position: relative !important; /* Or 'fixed' if it's modal-like */
+  z-index: 9999 !important; /* Ensure this value is higher than the header menu */
+  h3 {
+    color: $primary_color;
+  }
+  .switch-link {
+    color: $secondary_color;
+    .cursor-pointer {
+      cursor: pointer;
+    }
+  }
+}
+
+.divider-light {
+  border-color: $secondary_color !important; /* Example light color */
+  height: 1px !important;
+}
+
+.divider-dark {
+  border-color: $primary_color !important; /* Example dark color */
+  height: 1px !important;
+}
+
+.item-label {
+  &.light {
+    color: $primary_color !important;
+  }
+  &.dark {
+    color: $secondary_color !important;
+  }
+}

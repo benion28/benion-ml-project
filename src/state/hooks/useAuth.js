@@ -1,11 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { requestMethod } from '../../services/helpers';
 import usersRequest from '../requests/usersRequest';
-import { success, error } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const useAuth = () => {
   const dispatch = useDispatch();
   const authUrl = 'benion-users/api/auth';
+  const { success, error } = toast
 
   const authActions = {
     login: async (credentials) => {

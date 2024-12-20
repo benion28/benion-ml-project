@@ -127,6 +127,8 @@ const UnauthenticatedHeader = () => {
         }}
         closeIcon={<CloseOutlined className='d-none' onClick={closeDrawer} style={{ color: 'white', cursor: 'pointer' }} />}
       >
+        {drawerVisible && <div className="d-flex justify-content-end px-3" ><CloseOutlined onClick={closeDrawer} style={{ color: 'white', cursor: 'pointer' }} /></div>}
+        
         {/* Add Logo at the Top */}
         <Link to={paths.homeUrl} className="mobile-menu-logo px-4">
           {logoSection}
