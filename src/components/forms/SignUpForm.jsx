@@ -6,21 +6,20 @@ import ActionButton from '../custom/ActionButton';
 import { FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
 import { danger_color, tertiary_color2 } from '../../services/helpers';
 import Loader from '../custom/Loader';
+import { useSelector } from 'react-redux';
 
 const {Item, useForm } = AntdForm
 const { Fragment } = React
 
 const SignUpForm = ({ switchToLogin }) => {
-  const [form] = useForm();
-  const [isLoading, setIsLoading] = useState(false)
+  const [form] = useForm()
+  const { isLoading } = useSelector((state) => state.auth)
 
   const onFinish = (values) => {
-    setIsLoading(true)
     console.log('Form Values:', values);
   };
 
   const onFinishFailed = (errors) => {
-    setIsLoading(true)
     console.log('Form Errors:', errors);
   };
 
@@ -38,8 +37,8 @@ const SignUpForm = ({ switchToLogin }) => {
           <h3 className="text-white mb-1 py-1 d-flex justify-content-center">Create an account</h3>
           <Row>
             <Col sm={12} lg={6}>
+            <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>First Name</h6>
               <Item 
-                label='First Name'
                 name="firstName" 
                 rules={[{ required: true, message: 'First Name is required' }]}
                 hasFeedback
@@ -52,8 +51,8 @@ const SignUpForm = ({ switchToLogin }) => {
               </Item>
             </Col>
             <Col sm={12} lg={6}>
+            <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Last Name</h6>
               <Item 
-                label='Last Name'
                 name="lastName" 
                 rules={[{ required: true, message: 'Last Name is required' }]}
                 hasFeedback
@@ -68,8 +67,8 @@ const SignUpForm = ({ switchToLogin }) => {
           </Row>
           <Row>
             <Col sm={12} lg={6}>
+            <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Username</h6>
               <Item 
-                label='Username'
                 name="username" 
                 rules={[{ required: true, message: 'Username is required' }]}
                 hasFeedback
@@ -82,8 +81,8 @@ const SignUpForm = ({ switchToLogin }) => {
               </Item>
             </Col>
             <Col sm={12} lg={6}>
+            <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Sex</h6>
             <Item 
-                label='Sex'
                 name="sex" 
                 rules={[{ required: true, message: 'Sex is required' }]}
                 hasFeedback
@@ -98,8 +97,8 @@ const SignUpForm = ({ switchToLogin }) => {
           </Row>
           <Row>
             <Col sm={12} lg={6}>
+            <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Password</h6>
               <Item 
-                  label='Password'
                   name="password" 
                   rules={[{ required: true, message: 'Password is required' }]}
                   hasFeedback
@@ -112,8 +111,8 @@ const SignUpForm = ({ switchToLogin }) => {
                 </Item>
               </Col>
               <Col sm={12} lg={6}>
+              <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Confirm Password</h6>
                 <Item 
-                  label='Confirm Password'
                   name="confirm_password" 
                   rules={[{ required: true, message: 'Password is required' }]}
                   hasFeedback
@@ -128,8 +127,8 @@ const SignUpForm = ({ switchToLogin }) => {
             </Row>
             <Row>
               <Col sm={12} lg={12}>
+              <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Email</h6>
                 <Item 
-                  label='Email'
                   name="email" 
                   rules={[
                     { required: true, message: 'Email is required' },

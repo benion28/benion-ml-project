@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import { Drawer } from 'antd';
-import { MenuOutlined, CustomerServiceOutlined, LoginOutlined, CloseOutlined } from '@ant-design/icons';
-import AiHeaderIcon from '../../assests/svgs/Benion-Tech-AI-Icon.svg';
-import { Link } from 'react-router-dom';
-import '../../styles/unauthenticated-header.scss';
-import MenuComponent from '../custom/MenuComponent';
-import ActionButton from '../custom/ActionButton';
-import paths from '../../services/paths';
-import { getThemeColor } from '../../services/helpers';
-import PopupModal from '../custom/PopupModal';
-import LoginForm from '../forms/LoginForm';
-import SignUpForm from '../forms/SignUpForm';
+import React, { useState, useEffect } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import { Drawer } from 'antd'
+import { MenuOutlined, CustomerServiceOutlined, LoginOutlined, CloseOutlined } from '@ant-design/icons'
+import AiHeaderIcon from '../../assests/svgs/Benion-Tech-AI-Icon.svg'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import '../../styles/unauthenticated-header.scss'
+import MenuComponent from '../custom/MenuComponent'
+import ActionButton from '../custom/ActionButton'
+import paths from '../../services/paths'
+import { getThemeColor } from '../../services/helpers'
+import PopupModal from '../custom/PopupModal'
+import LoginForm from '../forms/LoginForm'
+import SignUpForm from '../forms/SignUpForm'
 
 const { Fragment } = React
 
@@ -19,7 +20,8 @@ const UnauthenticatedHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true)
+  const { isLoggedIn } = useSelector((state) => state.auth)
 
   const toggleModal = () => setIsModalVisible(!isModalVisible);
 
@@ -30,10 +32,11 @@ const UnauthenticatedHeader = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+    console.log("isLoggedIn", isLoggedIn)
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isLoggedIn]);
 
   const showDrawer = () => setDrawerVisible(true);
   const closeDrawer = () => setDrawerVisible(false);
@@ -163,11 +166,14 @@ const UnauthenticatedHeader = () => {
       </Drawer>
 
       <PopupModal
-        visible={isModalVisible}
+        visible={isModalVisible && !isLoggedIn}
         onCancel={toggleModal}
-        title={isLogin ? 'Log In' : 'Sign Up'}
       >
-        {isLogin ? <LoginForm switchToSignUp={switchToSignUp} /> : <SignUpForm switchToLogin={switchToLogin} />}
+        {isLogin ? 
+          <LoginForm switchToSignUp={switchToSignUp} /> 
+          : 
+          <SignUpForm switchToLogin={switchToLogin} />
+        }
       </PopupModal>
 
     </header>

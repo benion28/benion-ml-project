@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import { Form as AntdForm, Divider } from 'antd';
-import { Form as BootstrapForm, Row, Col } from 'react-bootstrap';
-import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
-import { danger_color, tertiary_color2 } from '../../services/helpers';
-import TextInput from '../custom/TextInput';
-import ActionButton from '../custom/ActionButton';
-import Loader from '../custom/Loader';
+import React from 'react'
+import { Form as AntdForm, Divider } from 'antd'
+import { Form as BootstrapForm, Row, Col } from 'react-bootstrap'
+import { GoogleOutlined, FacebookOutlined, LockOutlined, UserOutlined } from '@ant-design/icons'
+import { danger_color, tertiary_color2 } from '../../services/helpers'
+import TextInput from '../custom/TextInput'
+import ActionButton from '../custom/ActionButton'
+import Loader from '../custom/Loader'
+import { useSelector } from 'react-redux'
+import useAuth from '../../state/hooks/useAuth'
 
 const { Item, useForm } = AntdForm
 const { Fragment } = React
 
 const LoginForm = ({ switchToSignUp }) => {
   const [form] = useForm()
-  const [isLoading, setIsLoading] = useState(false)
+  const { isLoading } = useSelector((state) => state.auth)
+  const { login } = useAuth()
 
   const onFinish = (values) => {
-    setIsLoading(true)
-    console.log('Login Values:', values)
-  };
+    login(values)
+  }
 
   const onFinishFailed = (errors) => {
-    setIsLoading(true)
     console.log('Login Errors:', errors)
   }
 
@@ -38,24 +39,27 @@ const LoginForm = ({ switchToSignUp }) => {
           <h3 className="text-white mb-3 text-center">Welcome Back</h3>
           <Row>
             <Col sm={12}>
+              <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Username or Email</h6>
               <Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: 'Username is required' }]}
+                name="identifier"
+                rules={[
+                  { required: true, message: 'Username or Email is required' },
+                ]}
                 hasFeedback
-                className='item-label dark'
+                className="item-label dark"
               >
-                <TextInput 
-                  placeholder="Username" 
-                  className="mb-1 py-1 h-50" 
+                <TextInput
+                  placeholder="Enter your username or email"
+                  className="mb-1 py-1 h-50"
+                  prefix={<UserOutlined />}
                 />
               </Item>
             </Col>
           </Row>
           <Row>
             <Col sm={12}>
+              <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Password</h6>
               <Item
-                label="Password"
                 name="password"
                 rules={[{ required: true, message: 'Password is required' }]}
                 hasFeedback
@@ -64,6 +68,7 @@ const LoginForm = ({ switchToSignUp }) => {
                   type='password' 
                   placeholder="Password" 
                   className="mb-1 py-1 h-50" 
+                  prefix={<LockOutlined />}
                 />
               </Item>
             </Col>

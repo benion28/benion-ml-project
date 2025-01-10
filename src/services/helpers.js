@@ -8,6 +8,28 @@ export const requestMethod = {
     patch: 'PATCH'
 }
 
+// export const axiosMethods = (method, fullUrl, data) => {
+//   switch (method) {
+//     case requestMethod.get:
+//       axiosInstance.get(fullUrl)
+//       break;
+//     case requestMethod.post:
+//       axiosInstance.post(fullUrl, data)
+//       break;
+//     case requestMethod.put:
+//       axiosInstance.put(fullUrl, data)
+//       break;
+//     case requestMethod.delete:
+//       axiosInstance.delete(fullUrl)
+//       break;
+//     case requestMethod.patch:
+//       axiosInstance.patch(fullUrl, data)
+//       break;
+//     default:
+//       break;
+//   }
+// }
+
 export const axiosMethods = {
   get: axiosInstance.get,
   post: axiosInstance.post,
@@ -22,6 +44,12 @@ export const methodMessages = {
   put: 'Updated',
   delete: 'Deleted',
   patch: 'Updated',
+};
+
+export const authTypes = {
+  login: 'login',
+  logout: 'logout',
+  register: 'register'
 };
 
 export const primary_color = '#1c1c3c'
@@ -42,3 +70,6 @@ export const getThemeColor = (theme) => {
     };
     return themeColor
   }
+
+export const benionUserUrl = 'benion-users/api'
+export const benionMlUrl = 'benion-ml/api'

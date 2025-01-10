@@ -1,56 +1,40 @@
-import { useDispatch } from 'react-redux';
-import { requestMethod } from '../../services/helpers';
-import usersRequest from '../requests/usersRequest';
-import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux'
+import { authTypes, benionMlUrl, requestMethod } from '../../services/helpers'
+import authRequest from '../requests/authRequest'
 
 const useAuth = () => {
-  const dispatch = useDispatch();
-  const authUrl = 'benion-users/api/auth';
-  const { success, error } = toast
+  const dispatch = useDispatch()
 
-  const authActions = {
-    login: async (credentials) => {
-      try {
-        const response = await usersRequest({
-          url: `${authUrl}/login`,
-          method: requestMethod.post,
-          data: credentials,
-          dispatch,
-          successMessage: 'Login Successful',
-        });
-        // Save token or session data to local storage
-        localStorage.setItem('token', response.token);
-        success('You are now logged in');
-        return response;
-      } catch (err) {
-        error('Login failed. Please check your credentials');
-        throw err;
-      }
+  const makeAuthRequest =  {
+    login: async (user) => {
+      return await authRequest({
+        url: `${benionMlUrl}/auth/login`,
+        method: requestMethod.post,
+        dispatch, 
+        type: authTypes.login,
+        data: user
+      })
     },
-    signup: async (userData) => {
-      try {
-        const response = await usersRequest({
-          url: `${authUrl}/signup`,
-          method: requestMethod.post,
-          data: userData,
-          dispatch,
-          successMessage: 'Signup Successful',
-        });
-        success('Account created successfully');
-        return response;
-      } catch (err) {
-        error('Signup failed. Please try again');
-        throw err;
-      }
+    register: async (user) => {
+      return await authRequest({
+        url: `${benionMlUrl}/auth/register`,
+        method: requestMethod.post,
+        dispatch, 
+        type: authTypes.register,
+        data: user
+      })
     },
-    logout: () => {
-      // Clear session data and Redux state
-      localStorage.removeItem('token');
-      success('You have been logged out');
+    logout: async (token) => {
+      return await authRequest({
+        url: `${benionMlUrl}/auth/logout`,
+        method: requestMethod.post,
+        data: token,
+        dispatch, 
+        type: authTypes.logout
+      })
     },
-  };
-
-  return authActions;
-};
+  }
+  return makeAuthRequest
+}
 
 export default useAuth;

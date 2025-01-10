@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AuthenticatedFooter from './AuthenticatedFooter';
 import UnauthenticatedFooter from './UnauthenticatedFooter';
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
-  const [authenticated, setAuthenticated] = useState(true); // Change to manage real authentication state
+  const { isLoggedIn } = useSelector((state) => state.auth)
 
   return (
     <div>
-      {authenticated ? <AuthenticatedFooter /> : <UnauthenticatedFooter />}
+      {isLoggedIn ? <AuthenticatedFooter /> : <UnauthenticatedFooter />}
     </div>
   );
 };

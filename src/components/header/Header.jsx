@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AuthenticatedHeader from './AuthenticatedHeader';
 import UnauthenticatedHeader from './UnauthenticatedHeader';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const [authenticated, setAuthenticated] = useState(false); // Change to manage real authentication state
+  const { isLoggedIn } = useSelector((state) => state.auth)
 
   return (
     <div>
-      {authenticated ? <AuthenticatedHeader /> : <UnauthenticatedHeader />}
+      {isLoggedIn ? <AuthenticatedHeader /> : <UnauthenticatedHeader />}
     </div>
   );
 };

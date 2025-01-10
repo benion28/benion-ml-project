@@ -7,9 +7,8 @@ import { dashboardUrl, exampleUrl, homeUrl } from '../services/paths';
 import Loader from './custom/Loader'; // Import the loader component
 import ExampleComponent from './pages/ExampleComponent';
 import Dashboard from './pages/Dashboard';
-import 'react-toastify/dist/ReactToastify.css';
-import { LoadingOutlined } from '@ant-design/icons';
-import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 
 const Main = () => {
@@ -19,10 +18,10 @@ const Main = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); // 3000ms = 3 seconds
+    }, 3000) // 3000ms = 3 seconds
 
-    return () => clearTimeout(timer); // Clear timer on cleanup
-  }, []);
+    return () => clearTimeout(timer) // Clear timer on cleanup
+  }, [])
 
   return (
     <Layout>
