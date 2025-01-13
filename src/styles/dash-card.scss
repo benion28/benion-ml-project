@@ -1,0 +1,41 @@
+@import "./global"; // Import global styles
+
+.dash-card {
+    background: $secondary_color;
+    width: 100%;
+    border-radius: 18px;
+    border-width: 1.5px;
+    margin-top: 15px;
+  
+    .card-header {
+      background-color: $primary_color;
+      color: $secondary_color;
+      text-align: start;
+      font-size: 16px;
+      border-radius: 17px 17px 0 0;
+    }
+  
+    &.reversed {
+      .card-header {
+        border-radius: 0 0 17px 17px;
+      }
+    }
+  
+    &.dark {
+      background: $primary_color;
+  
+      .card-header {
+        background-color: $secondary_color;
+        color: $primary_color;
+      }
+    }
+  
+    &.light {
+      background: $secondary_color;
+  
+      .card-header {
+        background-color: $primary_color;
+        color: $secondary_color;
+      }
+    }
+  }

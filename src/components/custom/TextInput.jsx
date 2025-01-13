@@ -1,7 +1,7 @@
-import React from 'react';
-import { Input } from 'antd';
-import PropTypes from 'prop-types';
-import '../../styles/text-input.scss';
+import React from 'react'
+import { Input } from 'antd'
+import PropTypes from 'prop-types'
+import '../../styles/text-input.scss'
 
 const { TextArea, Search } = Input;
 
@@ -17,6 +17,7 @@ const TextInput = ({
   isSearch = false,
   rows,
   prefix,
+  required = false,
   style,
   title,
   maxLength,
@@ -36,6 +37,7 @@ const TextInput = ({
       title={title}
       rows={rows}
       prefix={prefix}
+      required={required}
       maxLength={maxLength}
       className={`text-input ${className}`}
       {...props}
@@ -51,6 +53,7 @@ const TextInput = ({
       style={style}
       title={title}
       prefix={prefix}
+      required={required}
       disabled={disabled}
       allowClear={allowClear}
       className={`text-input ${className}`}
@@ -66,6 +69,7 @@ const TextInput = ({
       onBlur={onBlur}
       disabled={disabled}
       prefix={prefix}
+      required={required}
       style={style}
       title={title}
       allowClear={allowClear}
@@ -81,7 +85,7 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   title: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.is={},
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   disabled: PropTypes.bool,
@@ -92,6 +96,7 @@ TextInput.propTypes = {
   rows: PropTypes.number,
   maxLength: PropTypes.number,
   allowClear: PropTypes.bool,
+  required: PropTypes.bool,
   className: PropTypes.string,
 };
 

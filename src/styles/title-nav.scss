@@ -1,0 +1,69 @@
+@import "./global"; // Import global styles
+
+.title-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+
+    .logo-text {
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+  }
+
+  &.dark {
+    background-color: $primary_color;
+    color: $secondary_color;
+
+    .logo-container img {
+      filter: brightness(0) saturate(100%) invert(85%) sepia(8%) saturate(131%) hue-rotate(180deg) brightness(110%) contrast(110%);
+
+      &:hover {
+        filter: brightness(0) saturate(100%) invert(76%) sepia(55%) saturate(417%) hue-rotate(14deg) brightness(98%) contrast(102%);
+      }
+    }
+
+    .logo-text {
+      color: $secondary_color;
+
+      &:hover {
+        color: $warning_color;
+      }
+    }
+  }
+
+  &.light {
+    background-color: $secondary_color;
+    color: $primary_color;
+
+    .logo-container img {
+      filter: brightness(0) saturate(100%) invert(12%) sepia(95%) saturate(420%) hue-rotate(92deg) brightness(65%) contrast(120%);
+
+      &:hover {
+        filter: brightness(0) saturate(100%) invert(16%) sepia(92%) saturate(449%) hue-rotate(92deg) brightness(87%) contrast(98%);
+      }
+    }
+
+    .logo-text {
+      color: $primary_color;
+
+      &:hover {
+        color: $success_color2;
+      }
+    }
+  }
+}

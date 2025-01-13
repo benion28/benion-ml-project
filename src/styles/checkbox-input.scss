@@ -1,0 +1,41 @@
+@import './global'; // Import global styles
+
+.checkbox-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: $secondary_color !important;
+  
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+  
+    label {
+      font-size: 1rem;
+      color: $secondary_color !important;
+      cursor: pointer;
+      user-select: none;
+  
+      &:disabled {
+        cursor: not-allowed;
+        color: $secondary_color;
+      }
+    }
+
+    &.light {
+        input[type="checkbox"] {
+            accent-color: $primary_color !important;
+        }
+        label {
+            color: $primary_color !important;
+        }
+    }
+  }
+  

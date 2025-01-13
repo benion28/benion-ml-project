@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Avatar, Drawer, Dropdown, Switch } from 'antd';
-import { BulbOutlined, BulbFilled, HomeOutlined, CloseOutlined, MenuOutlined, LogoutOutlined } from '@ant-design/icons';
+import { BulbOutlined, BulbFilled, HomeOutlined, CloseOutlined, MenuOutlined, LogoutOutlined, DashboardOutlined, SettingOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../../state/slices/uiSlice';
 import '../../styles/authenticated-header.scss';
@@ -16,32 +16,32 @@ import { getThemeColor } from '../../services/helpers';
 
 const { Fragment } = React
 const AuthenticatedHeader = () => {
-  const dispatch = useDispatch();
-  const theme = useSelector((state) => state.ui.theme);
-  const [drawerVisible, setDrawerVisible] = useState(false);
+  const dispatch = useDispatch()
+  const theme = useSelector((state) => state.ui.theme)
+  const [drawerVisible, setDrawerVisible] = useState(false)
 
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
     console.log(e.target.value);
-  };
+  }
 
   const showDrawer = () => setDrawerVisible(true);
   const closeDrawer = () => setDrawerVisible(false);
 
   const menuItems = [
-    { key: 'home', label: 'Home', icon: <HomeOutlined /> },
-    { key: 'calendar', label: 'Calendar', icon: <HomeOutlined /> },
-    { key: 'people', label: 'People', icon: <HomeOutlined /> },
+    { key: 'home', label: <Link className='text-decoration-none' to={paths.homeUrl}>Home</Link>, icon: <HomeOutlined /> },
+    { key: 'dashboard', label: <Link className='text-decoration-none' to={paths.dashboardUrl}>Dashboard</Link>, icon: <DashboardOutlined /> },
+    { key: 'ai', label: <Link className='text-decoration-none' to={paths.aiUrl}>AI</Link>, icon: <HomeOutlined /> },
     { key: 'billing', label: 'Billing', icon: <HomeOutlined /> },
-    { key: 'settings', label: 'Settings', icon: <HomeOutlined /> },
-  ];
+    { key: 'settings', label: 'Settings', icon: <SettingOutlined /> },
+  ]
 
   const handleThemeToggle = (checked) => {
     const newTheme = checked ? 'dark' : 'light';
     dispatch(setTheme(newTheme)); // Dispatch theme change action
-  };
+  }
 
   const profileMenu = (
     <MenuComponent
@@ -53,7 +53,7 @@ const AuthenticatedHeader = () => {
         { key: 'logout', label: <Link to="/" onClick={() => console.log('Logging out')}>Logout</Link> },
       ]}
     />
-  );
+  )
 
   const otherSection = (
     <Fragment>
@@ -107,7 +107,7 @@ const AuthenticatedHeader = () => {
   );
 
   return (
-    <header className={`header authenticated-header ${theme}`}>
+    <header className={`px-2 header authenticated-header ${theme}`}>
       <div className="container py-3">
         <Row className="align-items-center">
           {/* Logo Section */}

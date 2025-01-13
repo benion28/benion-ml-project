@@ -61,7 +61,11 @@ const LoginForm = ({ switchToSignUp }) => {
               <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Password</h6>
               <Item
                 name="password"
-                rules={[{ required: true, message: 'Password is required' }]}
+                rules={[
+                  { required: true, message: 'Password is required' },
+                  { min: 8, message: 'Password should not be less than 8 characters' },
+                  { max: 12, message: 'Password should not be more than 12 characters' }
+                ]}
                 hasFeedback
               >
                 <TextInput 

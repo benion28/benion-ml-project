@@ -35,7 +35,10 @@ module.exports = function override(config) {
       Buffer: ['buffer', 'Buffer'],
       process: 'process/browser',
     }),
-    new webpack.DefinePlugin(envKeys),
+    new webpack.DefinePlugin({
+      ...envKeys,
+      'process.env.PORT': JSON.stringify(process.env.PORT || 3000),
+    }),
   ]);
 
   return config;

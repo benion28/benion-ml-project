@@ -1,5 +1,5 @@
-const { requestMethod, authTypes } = require("../../services/helpers")
-const { authRequestStart, authRequestSuccess, authRequestFail } = require("../slices/authSlice")
+const { requestMethod, authTypes, initialAuthState } = require("../../services/helpers")
+const { authRequestStart, authRequestSuccess, authRequestFail, authLogoutRequestSuccess, authRegisterRequestSuccess } = require("../slices/authSlice")
 const { default: axiosInstance } = require("../../services/axiosInstance")
 
 const {  get, post, put, delete: del, patch } = requestMethod
@@ -22,6 +22,28 @@ module.exports = async ({ baseURL = process.env.BENION_TECH_API_URL, url, method
             dispatch(authRequestSuccess(responseData.data))
           }
           return []
+        }).catch(error => {
+          dispatch(authRequestFail(error.message))
+        })
+        break
+      case authTypes.register:
+        axiosInstance.post(fullUrl, data).then(response => {
+          const responseData = response.data
+          if (responseData.success) {
+            dispatch(authRegisterRequestSuccess(initialAuthState.isLoading))
+          }
+          return []
+        }).catch(error => {
+          dispatch(authRequestFail(error.message))
+        })
+        break
+      case authTypes.logout:
+        axiosInstance.post(fullUrl, data).then(response => {
+          const responseData = response.data
+          if (responseData.success) {
+            dispatch(authLogoutRequestSuccess(initialAuthState))
+          }
+          return [responseData.data]
         }).catch(error => {
           dispatch(authRequestFail(error.message))
         })

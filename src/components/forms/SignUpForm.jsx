@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form as AntdForm, Divider } from 'antd';
 import { Form as BootstrapForm, Row, Col } from 'react-bootstrap';
 import TextInput from '../custom/TextInput';
 import ActionButton from '../custom/ActionButton';
 import { FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
-import { danger_color, tertiary_color2 } from '../../services/helpers';
+import { danger_color, tertiary_color2, userGenders } from '../../services/helpers';
 import Loader from '../custom/Loader';
 import { useSelector } from 'react-redux';
+import SelectInput from '../custom/SelectInput';
+import CheckboxInput from '../custom/CheckboxInput';
+import useAuth from '../../state/hooks/useAuth';
 
 const {Item, useForm } = AntdForm
 const { Fragment } = React
@@ -14,14 +17,15 @@ const { Fragment } = React
 const SignUpForm = ({ switchToLogin }) => {
   const [form] = useForm()
   const { isLoading } = useSelector((state) => state.auth)
+  const { register } = useAuth()
 
   const onFinish = (values) => {
-    console.log('Form Values:', values);
-  };
+    register(values)
+  }
 
   const onFinishFailed = (errors) => {
-    console.log('Form Errors:', errors);
-  };
+    console.log('Form Errors:', errors.errorFields)
+  }
 
   return (
     <AntdForm 
@@ -81,16 +85,16 @@ const SignUpForm = ({ switchToLogin }) => {
               </Item>
             </Col>
             <Col sm={12} lg={6}>
-            <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Sex</h6>
+            <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Gender</h6>
             <Item 
-                name="sex" 
-                rules={[{ required: true, message: 'Sex is required' }]}
+                name="gender" 
+                rules={[{ required: true, message: 'Gender is required' }]}
                 hasFeedback
               >
-                <TextInput 
-                  type="text" 
-                  placeholder="Sex" 
-                  className="mb-1 py-1"
+                <SelectInput
+                  placeholder="Choose an option"
+                  className="mb-1 h-50"
+                  options={userGenders}
                 />
               </Item>
             </Col>
@@ -100,7 +104,11 @@ const SignUpForm = ({ switchToLogin }) => {
             <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Password</h6>
               <Item 
                   name="password" 
-                  rules={[{ required: true, message: 'Password is required' }]}
+                  rules={[
+                    { required: true, message: 'Password is required' },
+                    { min: 8, message: 'Password should not be less than 8 characters' },
+                    { max: 12, message: 'Password should not be more than 12 characters' }
+                  ]}
                   hasFeedback
                 >
                   <TextInput 
@@ -113,8 +121,18 @@ const SignUpForm = ({ switchToLogin }) => {
               <Col sm={12} lg={6}>
               <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Confirm Password</h6>
                 <Item 
-                  name="confirm_password" 
-                  rules={[{ required: true, message: 'Password is required' }]}
+                  name="password2" 
+                  rules={[
+                    { required: true, message: 'Confirm Password is required' },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue('password') === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(new Error('Passwords do not match'));
+                      },
+                    }),
+                  ]}
                   hasFeedback
                 >
                   <TextInput 
@@ -140,6 +158,28 @@ const SignUpForm = ({ switchToLogin }) => {
                     type="email" 
                     placeholder="Email" 
                     className="mb-1 py-1 h-50" 
+                  />
+                </Item>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm={12} lg={12}>
+              <h6 className='text-white'><span className='text-danger fw-bold px-1'>*</span>Terms and Condition</h6>
+                <Item 
+                  name="isAccept" 
+                  valuePropName="checked"
+                  rules={[
+                    {
+                      validator: (_, value) =>
+                        value
+                          ? Promise.resolve()
+                          : Promise.reject(new Error('You need to accept the terms and conditions')),
+                    },
+                  ]}
+                  hasFeedback
+                >
+                  <CheckboxInput
+                    label="Accept Terms and Conditions"
                   />
                 </Item>
               </Col>

@@ -1,9 +1,7 @@
 const paths = {
     homeUrl: '/',
-    loginUrl: '/login',
-    registerUrl: '/register',
     dashboardUrl: '/dashboard',
-    profileUrl: '/profile',
+    aiUrl: '/ai',
     settingsUrl: '/settings',
     aboutUrl: '/about',
     contactUrl: '/contact',

@@ -73,3 +73,16 @@ export const getThemeColor = (theme) => {
 
 export const benionUserUrl = 'benion-users/api'
 export const benionMlUrl = 'benion-ml/api'
+
+export const userGenders = [
+  {name: "Male", label: "Male", value: "male"},
+  {name: "Female", label: "Female", value: "female"},
+  {name: "Other", label: "Other", value: "other"},
+]
+
+export const initialAuthState = {
+  isLoading: false,
+  isLoggedIn: false,
+  user: null,
+  error: null,
+}
