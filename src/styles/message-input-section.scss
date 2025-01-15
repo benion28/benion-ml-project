@@ -1,0 +1,48 @@
+@import './global';
+
+.message-input-section {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  &.dark {
+    background-color: darken($secondary_color, 10);
+    border-top: 3px solid lighten($secondary_color, 10);
+
+    .icon {
+      color: $primary_color;
+    }
+  }
+
+  &.light {
+    background-color: $primary_color;
+    border-top: 3px solid darken($primary_color, 10);
+
+    .icon {
+      color: $secondary_color;
+    }
+  }
+
+  .icon {
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 10px;
+
+    &:hover {
+      color: $tertiary_color;
+    }
+  }
+
+  .send-button {
+    background-color: $tertiary_color;
+    color: $primary_color;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($tertiary_color, 10);
+    }
+  }
+}

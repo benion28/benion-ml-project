@@ -1,0 +1,42 @@
+@import './global';
+
+.message-display-area {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+
+  &.dark {
+    background-color: lighten($primary_color, 5);
+    color: $secondary_color;
+  }
+
+  &.light {
+    background-color: darken($secondary_color, 5);
+    color: $primary_color;
+  }
+
+  .message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .message-item {
+      max-width: 70%;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+
+      &.user-message {
+        align-self: flex-end;
+        background-color: lighten($primary_color, 10);
+        color: $secondary_color;
+      }
+
+      &.ai-message {
+        align-self: flex-start;
+        background-color: darken($primary_color, 10);
+        color: lighten($secondary_color, 15);
+      }
+    }
+  }
+}

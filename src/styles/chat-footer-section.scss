@@ -1,0 +1,60 @@
+@import './global';
+
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 14px;
+
+  &.dark {
+    background-color: $secondary_color;
+    color: $primary_color;
+
+    .links {
+      .footer-link {
+        color: $primary_color;
+      }
+    }
+  }
+
+  &.light {
+    background-color: $primary_color;
+    color: $secondary_color;
+
+    .links {
+      .footer-link {
+        color: $secondary_color;
+      }
+    }
+  }
+
+  .settings-icon {
+    font-size: 18px;
+    cursor: pointer;
+    color: $tertiary_color;
+
+    &:hover {
+      color: lighten($tertiary_color, 10);
+    }
+  }
+
+  .links {
+    display: flex;
+    gap: 10px;
+
+    .footer-link {
+      text-decoration: none;
+      color: $secondary_color;
+
+      &:hover {
+        color: $tertiary_color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .app-info {
+    font-weight: bold;
+  }
+}

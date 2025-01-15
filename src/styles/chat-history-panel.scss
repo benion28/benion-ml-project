@@ -1,0 +1,107 @@
+@import './global';
+
+.chat-history-panel {
+  height: 100%;
+  padding: 10px;
+
+  &.dark {
+    background-color: lighten($primary_color, 5);
+    border-right: 1px solid lighten($primary_color, 10);
+
+    .history-header {
+      border-bottom: 1px solid $secondary_color;
+
+      h5 {
+        color: $secondary_color;
+      }
+    }
+
+    .history-list {
+      .history-item {
+        background-color: darken($primary_color, 7);
+
+        &:hover {
+          background-color: lighten($primary_color, 15);
+        }
+      }
+
+      .icon {
+        color: $secondary_color;
+      }
+
+      .edit-icon {
+        color: lighten($secondary_color, 10);
+      }
+
+      .delete-icon {
+        color: darken($secondary_color, 10);
+      }
+    }
+  }
+
+  &.light {
+    background-color: lighten($secondary_color, 5);
+    border-right: 1px solid lighten($secondary_color, 10);
+
+    .history-header {
+      border-bottom: 1px solid $primary_color;
+
+      h5 {
+        color: $primary_color;
+      }
+    }
+
+    .history-list {
+      .history-item {
+        background-color: darken($secondary_color, 7);
+
+        &:hover {
+          background-color: darken($secondary_color, 15);
+        }
+      }
+
+      .icon {
+        color: $primary_color;
+      }
+
+      .edit-icon {
+        color: lighten($primary_color, 10);
+      }
+
+      .delete-icon {
+        color: darken($primary_color, 10);
+      }
+    }
+  }
+
+  .history-header {
+    padding-bottom: 10px;
+
+    h5 {
+      font-weight: bold;
+    }
+  }
+
+  .history-list {
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+    margin-top: 10px;
+
+    .history-item {
+      padding: 8px 12px;
+      margin-bottom: 5px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      .icon {
+        font-size: 16px;
+        margin-left: 8px;
+        cursor: pointer;
+
+        &:hover {
+          color: $tertiary_color;
+        }
+      }
+    }
+  }
+}

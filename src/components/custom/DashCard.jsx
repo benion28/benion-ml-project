@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
 import '../../styles/dash-card.scss'
 
+const {Header: BootstrapHeader, Body: BootstrapBody} = Card
+
 const DashCard = ({
   title,
   children,
@@ -11,15 +13,15 @@ const DashCard = ({
   reversed = false,
 }) => {
   const Header = (
-    <Card.Header>
+    <BootstrapHeader>
       {typeof title === 'string' ? <h5 className="m-0">{title}</h5> : title}
-    </Card.Header>
+    </BootstrapHeader>
   )
 
   return (
     <Card className={`dash-card ${containerClass} ${reversed ? 'reversed' : ''}`}>
       {!reversed && Header}
-      <Card.Body className={contentClass}>{children}</Card.Body>
+      <BootstrapBody className={contentClass}>{children}</BootstrapBody>
       {reversed && Header}
     </Card>
   )

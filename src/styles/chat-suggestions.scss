@@ -1,0 +1,88 @@
+@import './global';
+
+.chat-suggestions {
+    height: 100%;
+    overflow-y: auto;
+
+    &.dark {
+      background-color: lighten($primary_color, 5);
+      border-right: 1px solid lighten($primary_color, 10);
+
+      h6 {
+        color: $secondary_color;
+        border-bottom: 1px solid $secondary_color;
+      }
+
+      .suggestions-list {
+        background-color: lighten($primary_color, 5);
+
+        .suggestion-item {
+          background-color: darken($primary_color, 7);
+
+          &:hover {
+            background-color: lighten($primary_color, 15);
+          }
+        }
+
+        .suggestion-title {
+          color: $secondary_color;
+        }
+
+        .chat-icon {
+          color: lighten($secondary_color, 10);
+        }
+      }
+    }
+  
+    &.light {
+      background-color: lighten($secondary_color, 5);
+      border-right: 1px solid lighten($secondary_color, 10);
+
+      h6 {
+        color: $primary_color;
+        border-bottom: 1px solid $primary_color;
+      }
+
+      .suggestions-list {
+        background-color: lighten($secondary_color, 5);
+
+        .suggestion-item {
+          background-color: darken($secondary_color, 7);
+
+          &:hover {
+            background-color: darken($secondary_color, 15);
+          }
+        }
+
+        .suggestion-title {
+          color: $primary_color;
+        }
+
+        .chat-icon {
+          color: lighten($primary_color, 10);
+        }
+      }
+    }
+  
+    h6 {
+      font-weight: bold;
+    }
+  
+    .suggestions-list {
+      .suggestion-item {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+  
+        .suggestion-title {
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+  
+        .chat-icon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+  

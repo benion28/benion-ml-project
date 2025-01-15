@@ -55,7 +55,7 @@ const UnauthenticatedHeader = () => {
   )
 
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`px-2 header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container py-3">
         <Row className="align-items-center">
           {/* Logo Section */}

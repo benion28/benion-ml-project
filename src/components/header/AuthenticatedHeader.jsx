@@ -104,7 +104,7 @@ const AuthenticatedHeader = () => {
         className="theme-toggle ms-3"
       />
     </Fragment>
-  );
+  )
 
   return (
     <header className={`px-2 header authenticated-header ${theme}`}>

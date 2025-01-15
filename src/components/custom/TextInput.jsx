@@ -23,6 +23,7 @@ const TextInput = ({
   maxLength,
   allowClear = false,
   className = '',
+  onKeyPress,
   ...props
 }) => {
   return isTextArea ? (
@@ -40,6 +41,7 @@ const TextInput = ({
       required={required}
       maxLength={maxLength}
       className={`text-input ${className}`}
+      onKeyPress={onKeyPress}
       {...props}
     />
   ) : isSearch ? (
@@ -57,6 +59,7 @@ const TextInput = ({
       disabled={disabled}
       allowClear={allowClear}
       className={`text-input ${className}`}
+      onKeyPress={onKeyPress}
       {...props}
     />
   ) : (
@@ -75,6 +78,7 @@ const TextInput = ({
       allowClear={allowClear}
       maxLength={maxLength}
       className={`text-input ${className}`}
+      onKeyPress={onKeyPress}
       {...props}
     />
   );
@@ -98,6 +102,7 @@ TextInput.propTypes = {
   allowClear: PropTypes.bool,
   required: PropTypes.bool,
   className: PropTypes.string,
+  onKeyPress: PropTypes.func
 };
 
 export default TextInput;

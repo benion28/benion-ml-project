@@ -1,6 +1,7 @@
 @import './global'; // Import global styles
 
 .authenticated-header {
+  z-index: 1000;
   &.dark {
     background-color: $primary_color; 
     color: $secondary_color;

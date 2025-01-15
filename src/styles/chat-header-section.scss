@@ -1,0 +1,37 @@
+@import './global';
+
+.header-section {
+    &.dark {
+      border-bottom: 1px solid $secondary_color;
+      background-color: lighten($color: $primary_color, $amount: 5); // Slightly darker header
+      h5 {
+        font-weight: bold;
+        color: $secondary_color;
+      }
+    }
+
+    &.light {
+      border-bottom: 1px solid $primary_color;
+      background-color: lighten($color: $secondary_color, $amount: 5);
+      h5 {
+        font-weight: bold;
+        color: $primary_color;
+      }
+    }
+
+    .settings-icon {
+      cursor: pointer;
+
+      &.dark {
+        color: $secondary_color !important;
+      }
+
+      &.light {
+        color: $primary_color !important;
+      }
+
+      &:hover {
+        color: $tertiary_color !important;
+      }
+    }
+  }
