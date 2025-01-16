@@ -3,6 +3,7 @@
 .chat-history-panel {
   height: 100%;
   padding: 10px;
+  height: 70vh;
 
   &.dark {
     background-color: lighten($primary_color, 5);
@@ -17,6 +18,7 @@
     }
 
     .history-list {
+      scrollbar-color: $primary_color $secondary_color;
       .history-item {
         background-color: darken($primary_color, 7);
 
@@ -52,6 +54,7 @@
     }
 
     .history-list {
+      scrollbar-color: $secondary_color $primary_color;
       .history-item {
         background-color: darken($secondary_color, 7);
 
@@ -86,6 +89,7 @@
     max-height: calc(100% - 50px);
     overflow-y: auto;
     margin-top: 10px;
+    scrollbar-width: thin; 
 
     .history-item {
       padding: 8px 12px;

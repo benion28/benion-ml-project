@@ -24,6 +24,7 @@ const TextInput = ({
   allowClear = false,
   className = '',
   onKeyPress,
+  variant = '',
   ...props
 }) => {
   return isTextArea ? (
@@ -40,7 +41,7 @@ const TextInput = ({
       prefix={prefix}
       required={required}
       maxLength={maxLength}
-      className={`text-input ${className}`}
+      className={`text-input ${className} ${variant}`}
       onKeyPress={onKeyPress}
       {...props}
     />
@@ -58,7 +59,7 @@ const TextInput = ({
       required={required}
       disabled={disabled}
       allowClear={allowClear}
-      className={`text-input ${className}`}
+      className={`text-input ${className} ${variant}`}
       onKeyPress={onKeyPress}
       {...props}
     />
@@ -77,7 +78,7 @@ const TextInput = ({
       title={title}
       allowClear={allowClear}
       maxLength={maxLength}
-      className={`text-input ${className}`}
+      className={`text-input ${className} ${variant}`}
       onKeyPress={onKeyPress}
       {...props}
     />
@@ -102,7 +103,8 @@ TextInput.propTypes = {
   allowClear: PropTypes.bool,
   required: PropTypes.bool,
   className: PropTypes.string,
-  onKeyPress: PropTypes.func
+  onKeyPress: PropTypes.func,
+  variant: PropTypes.oneOf(['rounded']),
 };
 
 export default TextInput;

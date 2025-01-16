@@ -25,8 +25,12 @@
     }
   
     &:disabled {
-      background-color: $secondary_color;
+      background-color: lighten($tertiary_color, 10);
       cursor: not-allowed;
+    }
+
+    &.rounded {
+      border-radius: 50px !important;
     }
   
     &.error {

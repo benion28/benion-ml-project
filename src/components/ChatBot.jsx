@@ -7,15 +7,27 @@ import ChatHistoryPanel from './ChatHistoryPanel '
 import { Col, Row } from 'react-bootstrap'
 import ChatHeaderSection from './header/ChatHeaderSection'
 import ChatSuggestions from './ChatSuggestions'
-import { conversations, messages, suggestions } from '../services/helpers'
+import { conversations as localConversations, messages as localMessages, suggestions as localSuggestions } from '../services/helpers'
 
 const ChatBot = () => {
     const [chatHeader, setChatHeader] = useState({ title: 'AI Chat Box' })
     const [chatSuggestion, setChatSuggestion] = useState({ text: '' })
+    const [messages, setMessages] = useState([])
+    const [conversations, setConversations] = useState([])
+    const [suggestions, setSuggestions] = useState([])
 
     useEffect(() => {
-        if (conversations.length > 0) {
-            setChatHeader(conversations[0])
+        if (localConversations.length > 0) {
+            setConversations(localConversations)
+        }
+        if (localConversations.length > 0) {
+            setChatHeader(localConversations[0])
+        }
+        if (localMessages.length > 0) {
+            setMessages(localMessages)
+        }
+        if (localSuggestions.length > 0) {
+            setSuggestions(localSuggestions)
         }
     }, [])
 

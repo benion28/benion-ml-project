@@ -4,15 +4,19 @@
   flex-grow: 1;
   padding: 10px;
   overflow-y: auto;
+  height: 50vh;
+  scrollbar-width: thin;
 
   &.dark {
     background-color: lighten($primary_color, 5);
     color: $secondary_color;
+    scrollbar-color: $primary_color $secondary_color;
   }
 
   &.light {
     background-color: darken($secondary_color, 5);
     color: $primary_color;
+    scrollbar-color: $secondary_color $primary_color;
   }
 
   .message-list {

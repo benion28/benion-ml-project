@@ -88,7 +88,7 @@ export const initialAuthState = {
 }
 
 export const aiOptions = [
-  { value: 'chat-box', label: 'Chat Box' },
+  { value: 'chat-bot', label: 'Chat Bot' },
   { value: 'image-recognition', label: 'Image Recognition' },
   { value: 'video-recognition', label: 'Video Recognition' },
   { value: 'web-scraping', label: 'Web Scraping' },

@@ -5,7 +5,7 @@ import TextInput from './custom/TextInput'
 import '../styles/message-input-section.scss'
 import { useSelector } from 'react-redux'
 
-const MessageInputSection = ({ onSendMessage, text = '' }) => {
+const MessageInputSection = ({ text = '' }) => {
   const [message, setMessage] = useState(text)
   const theme = useSelector((state) => state.ui.theme)
 
@@ -15,13 +15,13 @@ const MessageInputSection = ({ onSendMessage, text = '' }) => {
 
   const handleSend = () => {
     if (message.trim()) {
-      onSendMessage(message);
+      console.log("message: ", message);
       setMessage('') // Clear input after sending
     }
   }
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
       handleSend()
     }
   }
@@ -45,7 +45,6 @@ const MessageInputSection = ({ onSendMessage, text = '' }) => {
 }
 
 MessageInputSection.propTypes = {
-  onSendMessage: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired
 }
 

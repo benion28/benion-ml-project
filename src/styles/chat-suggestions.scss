@@ -15,6 +15,7 @@
 
       .suggestions-list {
         background-color: lighten($primary_color, 5);
+        scrollbar-color: $primary_color $secondary_color;
 
         .suggestion-item {
           background-color: darken($primary_color, 7);
@@ -45,6 +46,7 @@
 
       .suggestions-list {
         background-color: lighten($secondary_color, 5);
+        scrollbar-color: $secondary_color $primary_color;
 
         .suggestion-item {
           background-color: darken($secondary_color, 7);
@@ -69,6 +71,10 @@
     }
   
     .suggestions-list {
+      height: 60vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+
       .suggestion-item {
         border-radius: 5px;
         cursor: pointer;

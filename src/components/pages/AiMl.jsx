@@ -8,10 +8,10 @@ import ChatBot from '../ChatBot'
 
 const AiMl = () => {
   const theme = useSelector((state) => state.ui.theme)
-  const [selectedOption, setSelectedOption] = useState('chat-box')
+  const [selectedOption, setSelectedOption] = useState('chat-bot')
   const getSelectedOption = () => {
     const selected = aiOptions.find((option) => option.value === selectedOption)
-    return selected ? selected.label : 'Chat Box'
+    return selected ? selected.label : 'Chat Bot'
   }
 
   return (
