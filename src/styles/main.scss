@@ -1,8 +1,10 @@
 @import './global'; // Importing global.scss
+/* Importing Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Tiro+Tamil:ital@0;1&display=swap');
 
 // Global body styles
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Tiro Tamil", serif;
   background-color: $primary_color;
   color: $secondary_color;
   -webkit-font-smoothing: antialiased;

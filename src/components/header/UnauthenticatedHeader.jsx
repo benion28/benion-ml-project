@@ -42,7 +42,7 @@ const UnauthenticatedHeader = () => {
   const closeDrawer = () => setDrawerVisible(false);
 
   const menuItems = [
-    { key: 'home', label: 'Home', className: 'text-white menu-item' },
+    { key: 'home', label: <Link className='text-decoration-none' to={paths.homeUrl}>Home</Link>, className: 'text-white menu-item' },
     { key: 'features', label: 'Features', className: 'text-white menu-item' },
     { key: 'documentation', label: 'Documentation', className: 'text-white menu-item' },
   ];

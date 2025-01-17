@@ -11,12 +11,40 @@
     background-color: lighten($primary_color, 5);
     color: $secondary_color;
     scrollbar-color: $primary_color $secondary_color;
+
+    .message-list {
+      .message-item {
+        &.user-message {
+          background-color: lighten($secondary_color, 15);
+          color: $primary_color;
+        }
+  
+        &.ai-message {
+          background-color: $secondary_color;
+          color: darken($color: $primary_color, $amount: 35);
+        }
+      }
+    }
   }
 
   &.light {
     background-color: darken($secondary_color, 5);
     color: $primary_color;
     scrollbar-color: $secondary_color $primary_color;
+
+    .message-list {
+      .message-item {
+        &.user-message {
+          background-color: lighten($primary_color, 10);
+          color: $secondary_color;
+        }
+  
+        &.ai-message {
+          background-color: darken($primary_color, 10);
+          color: lighten($secondary_color, 15);
+        }
+      }
+    }
   }
 
   .message-list {
@@ -32,14 +60,10 @@
 
       &.user-message {
         align-self: flex-end;
-        background-color: lighten($primary_color, 10);
-        color: $secondary_color;
       }
 
       &.ai-message {
         align-self: flex-start;
-        background-color: darken($primary_color, 10);
-        color: lighten($secondary_color, 15);
       }
     }
   }
