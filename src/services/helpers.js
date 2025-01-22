@@ -52,6 +52,15 @@ export const authTypes = {
   register: 'register'
 };
 
+export const requestTypes = {
+  getAll: 'get-all',
+  getOne: 'get-one',
+  edit  : 'update',
+  delete: 'delete',
+  add: 'create',
+  select: 'select'
+};
+
 export const primary_color = '#1c1c3c'
 export const secondary_color = '#dceff6'
 export const tertiary_color = '#0ea0f5'

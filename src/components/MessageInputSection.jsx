@@ -4,10 +4,14 @@ import { SendOutlined, PaperClipOutlined, AudioOutlined } from '@ant-design/icon
 import TextInput from './custom/TextInput'
 import '../styles/message-input-section.scss'
 import { useSelector } from 'react-redux'
+import useChat from '../state/hooks/useChat'
 
 const MessageInputSection = ({ text = '' }) => {
   const [message, setMessage] = useState(text)
   const theme = useSelector((state) => state.ui.theme)
+  const { chat } = useSelector((state) => state.chat)
+  const { user } = useSelector((state) => state.auth)
+  const { sendChat, getAllChats } = useChat()
 
   useEffect(() => {
     setMessage(text)
@@ -15,7 +19,27 @@ const MessageInputSection = ({ text = '' }) => {
 
   const handleSend = () => {
     if (message.trim()) {
-      console.log("message: ", message);
+      console.log("message: ", message)
+      let data
+      const requestData = {
+          message,
+          modelType: "gemini-1.5-flash",
+          senderName: `${user.firstName } ${ user.lastName}`,
+          senderId: user._id,
+          role: "user"
+      }
+
+      if (chat) {
+        data = {
+          ...chat,
+          ...requestData
+        }
+      } else {
+        data = requestData
+      }
+
+      sendChat(data)
+      getAllChats()
       setMessage('') // Clear input after sending
     }
   }

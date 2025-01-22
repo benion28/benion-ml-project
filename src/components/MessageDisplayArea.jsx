@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import '../styles/message-display-area.scss'
 import { useSelector } from 'react-redux'
 
-const MessageDisplayArea = ({ messages = [] }) => {
+const MessageDisplayArea = ({ history = [] }) => {
   const theme = useSelector((state) => state.ui.theme)
 
   return (
     <div className={`message-display-area ${theme}`}>
       <div className="message-list">
-        {messages.map((message, index) => (
+        {history.map((item, index) => (
           <div
             key={index}
-            className={`message-item ${message.sender === 'user' ? 'user-message' : 'ai-message'}`}
+            className={`message-item ${item.role === 'user' ? 'user-message' : 'ai-message'}`}
           >
-            <span className="message-text">{message.text}</span>
+            <span className="message-text">{item.message}</span>
           </div>
         ))}
       </div>
