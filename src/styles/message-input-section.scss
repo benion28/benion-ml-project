@@ -11,6 +11,10 @@
 
     .icon {
       color: $primary_color;
+
+      &.active {
+        color: $success_color2;
+      }
     }
   }
 
@@ -20,6 +24,10 @@
 
     .icon {
       color: $secondary_color;
+
+      &.active {
+        color: $success_color;
+      }
     }
   }
 

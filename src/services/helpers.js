@@ -143,3 +143,10 @@ export const messages = [
   { sender: 'user', text: 'Got it. Can you explain reducers a bit more?', timestamp: '10:10 AM' },
   { sender: 'ai', text: 'Reducers are pure functions that determine changes to your app state. They take the current state and an action as inputs.', timestamp: '10:11 AM' },
 ]
+
+export const chatGreeting = [
+  {
+    role: 'model',
+    message: 'Hi there! This is an AI Chatbot. Its nice to meet you. How can I help you today?'
+  }
+]

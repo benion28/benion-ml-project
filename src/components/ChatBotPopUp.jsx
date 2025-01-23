@@ -4,17 +4,13 @@ import ChatBotPopUpHeader from './header/ChatBotPopUpHeader';
 import ChatBotPopUpBody from './ChatBotPopUpBody';
 import ChatBotPopUpFooter from './footer/ChatBotPopUpFooter';
 import { useSelector } from 'react-redux';
+import { chatGreeting } from '../services/helpers';
 
 const ChatBotPopUp = () => {
   const [showChatbot, setShowChatbot] = useState(false)
-  const [chatHistory, setChatHistory] = useState([{
-    role: "user", 
-    text: "Hello! How can I assist you today?" 
-  }]) 
   const chatBodyRef = useRef()
   const theme = useSelector((state) => state.ui.theme)
-
-  const generateBotResponse = (message) => {}
+  const { chat } = useSelector((state) => state.chat)
 
   return (
     <div className={`chatbot-popup ${theme}`}>
@@ -31,14 +27,10 @@ const ChatBotPopUp = () => {
 
           <ChatBotPopUpBody
             chatBodyRef={chatBodyRef}
-            chatHistory={chatHistory}
+            chatHistory={ chat?.history ? chat?.history : chatGreeting }
           />
 
-          <ChatBotPopUpFooter
-            setChatHistory={setChatHistory} 
-            generateBotResponse={generateBotResponse}
-            chatHistory={chatHistory}
-          />
+          <ChatBotPopUpFooter />
 
         </div>
       </div>

@@ -1,5 +1,5 @@
 const { requestMethod, requestTypes } = require("../../services/helpers")
-const { chatRequestStart, chatRequestSuccess, chatRequestFail, chatsRequestSuccess } = require("../slices/chatSlice")
+const { chatRequestStart, chatRequestSuccess, chatRequestFail, chatsRequestSuccess, chatTypingRequest } = require("../slices/chatSlice")
 const { default: axiosInstance } = require("../../services/axiosInstance")
 
 const {  get, post, put, delete: del, patch } = requestMethod
@@ -16,6 +16,7 @@ module.exports = async ({ baseURL = process.env.BENION_TECH_API_URL, url, method
 
     switch (type) {
       case requestTypes.add:
+        dispatch(chatTypingRequest())
         axiosInstance.post(fullUrl, data).then(response => {
           const responseData = response.data
           if (responseData.success) {
@@ -49,12 +50,10 @@ module.exports = async ({ baseURL = process.env.BENION_TECH_API_URL, url, method
         })
         break
       case requestTypes.select:
-        console.log("data: ", data);
-        if (data) {
-          dispatch(chatRequestSuccess(data))
-        }
+        dispatch(chatRequestSuccess(data))
         break
       case requestTypes.update:
+        dispatch(chatTypingRequest())
         axiosInstance.put(fullUrl, data).then(response => {
           const responseData = response.data
           if (responseData.success) {

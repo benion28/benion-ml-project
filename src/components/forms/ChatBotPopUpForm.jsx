@@ -1,7 +1,13 @@
 import React, { useRef } from 'react'
+import useChat from '../../state/hooks/useChat'
+import { useSelector } from 'react-redux'
 
-const ChatBotPopUpForm = ({ setChatHistory, generateBotResponse, chatHistory }) => {
+const ChatBotPopUpForm = () => {
     const inputRef = useRef()
+    const { sendChat, getAllChats, selectChat } = useChat()
+    const { chat } = useSelector((state) => state.chat)
+    const { user } = useSelector((state) => state.auth)
+
     const handleFormSubmit = (event) => {
         event.preventDefault()
         const userMessage = inputRef.current.value.trim()
@@ -9,15 +15,39 @@ const ChatBotPopUpForm = ({ setChatHistory, generateBotResponse, chatHistory }) 
         if (!userMessage) return
         inputRef.current.value = ""
 
-        // Update chat history with the user's message
-        setChatHistory((history) => [...history, { role: 'user', text: userMessage} ])
+        let data
+        const requestData = {
+            message: userMessage,
+            modelType: "gemini-1.5-jagsdfgh",
+            senderName: `${user.firstName } ${ user.lastName}`,
+            senderId: user._id,
+            role: "user",
+            save: false
+        }
 
-        // Add a "Thinking..." placeholder for the bot's response
-        setTimeout(() => {
-            setChatHistory((history) => [...history, { role: 'model', text: "Thinking..."} ])
-            // generateBotResponse([...chatHistory, { role: 'user', text: userMessage}])
-            // generateBotResponse([...chatHistory, { role: 'user', text: `Using the details provided above, address this query: ${userMessage}`}])
-        }, 600)
+        if (chat) {
+            data = {
+            ...chat,
+            ...requestData
+            }
+        } else {
+            data = requestData
+        }
+
+        if (chat?.history?.length > 0) {
+            selectChat({
+            ...chat,
+            history: [...chat.history, { role: 'user', message: userMessage}]
+            })
+        } else {
+            selectChat({
+            ...chat,
+            history: [{ role: 'user', message: userMessage}]
+            })
+        }
+
+        sendChat(data)
+        getAllChats()
     }
 
   return (

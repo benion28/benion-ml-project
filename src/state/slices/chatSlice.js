@@ -13,7 +13,6 @@ const chatSlice = createSlice({
   reducers: {
     chatRequestStart: (state) => {
       state.isLoading = true;
-      state.isTyping = true;
       state.isError = false;
       state.error = null;
     },
@@ -34,8 +33,14 @@ const chatSlice = createSlice({
       state.isError = true;
       state.error = action.payload;
     },
+    chatTypingRequest: (state) => {
+      state.isTyping = true;
+      state.isLoading = false;
+      state.isError = false;
+      state.error = null;
+    },
   },
 });
 
-export const { chatRequestStart, chatsRequestSuccess, chatRequestSuccess, chatRequestFail } = chatSlice.actions;
+export const { chatRequestStart, chatsRequestSuccess, chatRequestSuccess, chatRequestFail, chatTypingRequest } = chatSlice.actions;
 export default chatSlice.reducer;

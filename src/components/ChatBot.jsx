@@ -7,7 +7,7 @@ import ChatHistoryPanel from './ChatHistoryPanel '
 import { Col, Row } from 'react-bootstrap'
 import ChatHeaderSection from './header/ChatHeaderSection'
 import ChatSuggestions from './ChatSuggestions'
-import { suggestions as localSuggestions } from '../services/helpers'
+import { chatGreeting, suggestions as localSuggestions } from '../services/helpers'
 import useChat from '../state/hooks/useChat'
 import { useSelector } from 'react-redux'
 
@@ -24,19 +24,21 @@ const ChatBot = () => {
         getAllChats().then(console.log).catch(console.log)
     }, [])
 
+    
+
     return (
         <ChatBoxWrapper> 
             <Row className='py-3'>
                 <Col sm={12} lg={3} className="mb-4">
                     <ChatHistoryPanel 
-                        chatHistory={chats? chats : []}
+                        chatHistory={chats ? chats : []}
                         onSelectConversation={(index) => selectChat(chats[index])} 
                         onEdit={(id) => console.log('Selected edit id:', id)} 
                     />
                 </Col>
                 <Col sm={12} lg={6} className="mb-4">
                     <ChatHeaderSection title={chat?.title ? chat?.title : "New Chat"} />
-                    <MessageDisplayArea history={chat?.history ? chat?.history : []} />
+                    <MessageDisplayArea history={chat?.history ? chat?.history : chatGreeting } />
                     <MessageInputSection text={chatSuggestion?.text}  />
                 </Col>
                 <Col sm={12} lg={3} className="mb-4">

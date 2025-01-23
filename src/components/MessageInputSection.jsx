@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { SendOutlined, PaperClipOutlined, AudioOutlined } from '@ant-design/icons'
+import { SendOutlined, PaperClipOutlined, AudioOutlined, StopOutlined } from '@ant-design/icons'
 import TextInput from './custom/TextInput'
 import '../styles/message-input-section.scss'
 import { useSelector } from 'react-redux'
@@ -11,22 +11,32 @@ const MessageInputSection = ({ text = '' }) => {
   const theme = useSelector((state) => state.ui.theme)
   const { chat } = useSelector((state) => state.chat)
   const { user } = useSelector((state) => state.auth)
-  const { sendChat, getAllChats } = useChat()
+  const { sendChat, getAllChats, selectChat } = useChat()
+  const [isListening, setIsListening] = useState(false)
+  let recognition
+
+  if ('webkitSpeechRecognition' in window) {
+    recognition = new window.webkitSpeechRecognition()
+    recognition.continuous = true
+    recognition.interimResults = false
+    recognition.lang = 'en-US'
+  }
 
   useEffect(() => {
     setMessage(text)
   }, [text])
 
   const handleSend = () => {
+    setIsListening(false)
     if (message.trim()) {
-      console.log("message: ", message)
       let data
       const requestData = {
           message,
           modelType: "gemini-1.5-flash",
           senderName: `${user.firstName } ${ user.lastName}`,
           senderId: user._id,
-          role: "user"
+          role: "user",
+          save: true
       }
 
       if (chat) {
@@ -38,15 +48,50 @@ const MessageInputSection = ({ text = '' }) => {
         data = requestData
       }
 
+      if (chat?.history?.length > 0) {
+        selectChat({
+          ...chat,
+          history: [...chat.history, { role: 'user', message}]
+        })
+      } else {
+        selectChat({
+          ...chat,
+          history: [{ role: 'user', message}]
+        })
+      }
+
       sendChat(data)
       getAllChats()
-      setMessage('') // Clear input after sending
+      setMessage('')
     }
   }
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSend()
+    }
+  }
+
+  const handleVoiceInput = () => {
+    if (isListening) {
+      recognition.stop();
+      setIsListening(false)
+    } else {
+      recognition.start()
+      setIsListening(true)
+      recognition.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0].transcript)
+          .join('');
+        setMessage((prevMessage) => `${prevMessage} ${transcript}`)
+      }
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error)
+        setIsListening(false);
+      }
+      recognition.onend = () => {
+        setIsListening(false);
+      }
     }
   }
 
@@ -60,7 +105,11 @@ const MessageInputSection = ({ text = '' }) => {
             onKeyPress={handleKeyPress}
             className={`${theme}`}
         />
-      <AudioOutlined className="icon mic-icon" />
+        { isListening ? 
+          <StopOutlined onClick={handleVoiceInput} className="icon mic-icon active" /> 
+          :
+          <AudioOutlined onClick={handleVoiceInput} className="icon mic-icon" />
+        }
       <button className="send-button" onClick={handleSend}>
         <SendOutlined />
       </button>
