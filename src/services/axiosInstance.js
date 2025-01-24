@@ -19,13 +19,12 @@ axiosInstance.interceptors.request.use(
   (config) => {
     // Add API key for specific requests
     const apiKey = process.env.BENION_TECH_AUTH_API_KEY // Your API key
-    config.headers['x-api-key'] = apiKey;
     if (config.url?.includes('/auth/login') || config.url?.includes('/auth/register')) {
       config.headers['x-api-key'] = apiKey; // Add API key to headers
     }
 
     // Add any custom headers (e.g., authentication tokens) here
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('mlToken')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }

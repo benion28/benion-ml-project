@@ -19,6 +19,7 @@ module.exports = async ({ baseURL = process.env.BENION_TECH_API_URL, url, method
         axiosInstance.post(fullUrl, data).then(response => {
           const responseData = response.data
           if (responseData.success) {
+            localStorage.setItem('mlToken', responseData.data.token)
             dispatch(authRequestSuccess(responseData.data))
           }
           return []

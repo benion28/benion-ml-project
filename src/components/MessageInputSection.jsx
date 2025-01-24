@@ -73,26 +73,21 @@ const MessageInputSection = ({ text = '' }) => {
   }
 
   const handleVoiceInput = () => {
-    if (isListening) {
-      recognition.stop();
-      setIsListening(false)
-    } else {
-      recognition.start()
+    recognition.start()
       setIsListening(true)
       recognition.onresult = (event) => {
+        console.log('Speech recognition result:', event)
         const transcript = Array.from(event.results)
           .map((result) => result[0].transcript)
-          .join('');
+          .join('')
         setMessage((prevMessage) => `${prevMessage} ${transcript}`)
       }
       recognition.onerror = (event) => {
         console.error('Speech recognition error:', event.error)
-        setIsListening(false);
       }
       recognition.onend = () => {
-        setIsListening(false);
+        console.log('Speech recognition ended')
       }
-    }
   }
 
   return (
@@ -106,7 +101,7 @@ const MessageInputSection = ({ text = '' }) => {
             className={`${theme}`}
         />
         { isListening ? 
-          <StopOutlined onClick={handleVoiceInput} className="icon mic-icon active" /> 
+          <StopOutlined onClick={() => setIsListening(false)} className="icon mic-icon active" /> 
           :
           <AudioOutlined onClick={handleVoiceInput} className="icon mic-icon" />
         }

@@ -21,7 +21,7 @@ const ChatBot = () => {
         if (localSuggestions.length > 0) {
             setSuggestions(localSuggestions)
         }
-        getAllChats().then(console.log).catch(console.log)
+        getAllChats()
     }, [])
 
     
