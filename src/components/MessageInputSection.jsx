@@ -6,7 +6,7 @@ import '../styles/message-input-section.scss'
 import { useSelector } from 'react-redux'
 import useChat from '../state/hooks/useChat'
 
-const MessageInputSection = ({ text = '' }) => {
+const MessageInputSection = ({ text = '', suggestionRef }) => {
   const [message, setMessage] = useState(text)
   const theme = useSelector((state) => state.ui.theme)
   const { chat } = useSelector((state) => state.chat)
@@ -91,7 +91,7 @@ const MessageInputSection = ({ text = '' }) => {
   }
 
   return (
-    <div className={`message-input-section ${theme}`}>
+    <div className={`message-input-section ${theme}`} ref={suggestionRef}>
       <PaperClipOutlined className="icon attachment-icon" />
       <TextInput
             placeholder="Type a message..."
@@ -113,7 +113,8 @@ const MessageInputSection = ({ text = '' }) => {
 }
 
 MessageInputSection.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  suggestionRef: PropTypes.object,
 }
 
 export default MessageInputSection

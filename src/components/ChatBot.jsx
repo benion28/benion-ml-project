@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ChatBoxWrapper from './containers/ChatBoxWrapper'
 import MessageDisplayArea from './MessageDisplayArea'
 import MessageInputSection from './MessageInputSection'
@@ -16,6 +16,13 @@ const ChatBot = () => {
     const [suggestions, setSuggestions] = useState([])
     const { getAllChats, selectChat } = useChat()
     const { chats, chat } = useSelector((state) => state.chat)
+    const suggestionRef = useRef(null);
+
+    const onSugestionClick = () => {
+        if (suggestionRef.current) {
+            suggestionRef.current.scrollTop = suggestionRef.current.scrollHeight
+        }
+    }
 
     useEffect(() => {
         if (localSuggestions.length > 0) {
@@ -39,12 +46,17 @@ const ChatBot = () => {
                 <Col sm={12} lg={6} className="mb-4">
                     <ChatHeaderSection title={chat?.title ? chat?.title : "New Chat"} />
                     <MessageDisplayArea history={chat?.history ? chat?.history : chatGreeting } />
-                    <MessageInputSection text={chatSuggestion?.text}  />
+                    <MessageInputSection suggestionRef={suggestionRef} text={chatSuggestion?.text}  />
                 </Col>
                 <Col sm={12} lg={3} className="mb-4">
                     <ChatSuggestions
                         suggestions={suggestions}
-                        onSelectChatSuggestion={(index) => setChatSuggestion(suggestions[index])}
+                        onSelectChatSuggestion={
+                            (index) => {
+                                setChatSuggestion(suggestions[index])
+                                onSugestionClick()
+                            }
+                        }
                     />
                 </Col>
             </Row>

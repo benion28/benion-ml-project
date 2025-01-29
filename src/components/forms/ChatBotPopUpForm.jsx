@@ -18,7 +18,7 @@ const ChatBotPopUpForm = () => {
         let data
         const requestData = {
             message: userMessage,
-            modelType: "gemini-1.5-jagsdfgh",
+            modelType: "gemini-1.5-flash",
             senderName: `${user.firstName } ${ user.lastName}`,
             senderId: user._id,
             role: "user",
