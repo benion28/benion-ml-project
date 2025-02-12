@@ -5,6 +5,7 @@ import { aiOptions, getThemeColor } from '../../services/helpers'
 import DashCard from '../custom/DashCard'
 import SelectInput from '../custom/SelectInput'
 import ChatBot from '../ChatBot'
+import WebScraper from '../WebScraper'
 
 const AiMl = () => {
   const theme = useSelector((state) => state.ui.theme)
@@ -36,7 +37,8 @@ const AiMl = () => {
         contentClass="content-class"
         reversed={false}
       >
-        <ChatBot />
+        { selectedOption === 'chat-bot' && <ChatBot /> }
+        { selectedOption === 'web-scraping' && <WebScraper /> }
       </DashCard>
     </div>
   )

@@ -1,0 +1,22 @@
+@import './global';
+
+.web-scraper-container {
+  // height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &.dark {
+    background-color: $primary_color;
+    color: $secondary_color;
+  }
+
+  &.light {
+    background-color: $secondary_color;
+    color: $primary_color;
+  }
+
+  .content-section {
+    flex-grow: 1; // Ensures content fills available space
+    overflow-y: auto;
+  }
+}

@@ -26,7 +26,9 @@ const AuthenticatedFooter = () => {
       <footer className={`footer ${isAtBottom ? 'scrolled' : ''} ${theme === 'dark' ? 'dark' : 'light'}`}>
         <div className="container">
             <p className={`text-center ${isAtBottom ? '' : 'text-secondary'} `}>
-              Designed by <span className={`${isAtBottom && theme === 'dark' ? 'text-warning' : 'text-primary'}`}>Bernard Iorver</span> &copy; {date.getFullYear()} All Rights Reserved
+              Designed by <span className={`${isAtBottom && theme === 'dark' ? 'text-warning' : 'text-primary'}`}>
+                <a href='https://benion-tech-server.onrender.com/owner' className='text-decoration-none' target='_blank noreferrer'>Bernard Iorver</a>
+              </span> &copy; {date.getFullYear()} All Rights Reserved
             </p>
         </div>
       </footer>

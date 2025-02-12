@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ChatBoxWrapper from './containers/ChatBoxWrapper'
+import BoxWrapper from './containers/BoxWrapper'
 import MessageDisplayArea from './MessageDisplayArea'
 import MessageInputSection from './MessageInputSection'
 import ChatFooterSection from './footer/ChatFooterSection'
@@ -34,7 +34,7 @@ const ChatBot = () => {
     
 
     return (
-        <ChatBoxWrapper> 
+        <BoxWrapper> 
             <Row className='py-3'>
                 <Col sm={12} lg={3} className="mb-4">
                     <ChatHistoryPanel 
@@ -61,7 +61,7 @@ const ChatBot = () => {
                 </Col>
             </Row>
             <ChatFooterSection />
-        </ChatBoxWrapper>
+        </BoxWrapper>
   )
 }
 

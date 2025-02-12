@@ -31,7 +31,16 @@ const MessageDisplayArea = ({ history = [] }) => {
             key={history.length}
             className={`message-item ai-message`}
           >
-            <span className="message-text"><TypingEffect texts={['Typing...']} /></span>
+            <span className="message-text">
+              <TypingEffect texts={['Typing...']} />
+            </span>
+            <span className="message-text">
+              <span className="d-flex flex-direction-row">
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <div key={index} className="loading-dot"></div>
+                ))}
+              </span>
+            </span>
           </div>
         }
         { isError && 

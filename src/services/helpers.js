@@ -103,6 +103,12 @@ export const aiOptions = [
   { value: 'web-scraping', label: 'Web Scraping' },
 ]
 
+export const wsOptions = [
+  { value: 'images', label: 'Images' },
+  { value: 'documents', label: 'Documents' },
+  { value: 'text', label: 'Text' },
+]
+
 export const conversations = [
   { title: 'ML Project Stack Setup', timestamp: '2025-01-14', id: 0 },
   { title: 'Python Developer Project Advice', timestamp: '2025-01-10', id: 2 },
