@@ -4,7 +4,7 @@ const { default: axiosInstance } = require("../../services/axiosInstance")
 
 const {  get, post, put, delete: del, patch } = requestMethod
 
-module.exports = async ({ baseURL = process.env.BENION_TECH_API_URL, url, method, dispatch, type, data = null}) => {
+module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? process.env.BENION_TECH_API_URL_TEST : process.env.BENION_TECH_API_URL_PROD, url, method, dispatch, type, data = null}) => {
     const fullUrl = `${baseURL}/${url}` // Combine baseURL and endpoint
     method = method ? method : get
     const validMethods = [get, post, put, del, patch];
