@@ -32,11 +32,12 @@ const MessageInputSection = ({ text = '', suggestionRef }) => {
       let data
       const requestData = {
           message,
-          modelType: "gemini-1.5-flash",
+          modelType: "llama-3.3-70b-versatile",
           senderName: `${user.firstName } ${ user.lastName}`,
           senderId: user._id,
           role: "user",
-          save: true
+          save: true,
+          useEmbeddedData: true
       }
 
       if (chat) {

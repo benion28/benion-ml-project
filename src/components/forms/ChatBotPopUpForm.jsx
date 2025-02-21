@@ -22,7 +22,8 @@ const ChatBotPopUpForm = () => {
             senderName: `${user.firstName } ${ user.lastName}`,
             senderId: user._id,
             role: "user",
-            save: false
+            save: false,
+            useEmbeddedData: true
         }
 
         if (chat) {
