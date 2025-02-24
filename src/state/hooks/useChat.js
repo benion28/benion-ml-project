@@ -23,9 +23,9 @@ const useChat = () => {
       })
     },
     sendChat: async (chat) => {
-      const url = chat.$key ? `${benionMlUrl}/edit-chat/${chat.$key}` : `${benionMlUrl}/send-chat`
-      const method = chat.$key ? requestMethod.put : requestMethod.post
-      const type = chat.$key ? requestTypes.update : requestTypes.add
+      const url = chat.id ? `${benionMlUrl}/edit-chat/${chat.id}` : `${benionMlUrl}/send-chat`
+      const method = chat.id ? requestMethod.put : requestMethod.post
+      const type = chat.id ? requestTypes.update : requestTypes.add
 
       return await chatRequest({
         url,
@@ -40,7 +40,8 @@ const useChat = () => {
         url: `${benionMlUrl}/delete-chat/${key}`,
         method: requestMethod.delete,
         dispatch, 
-        type: requestTypes.delete
+        type: requestTypes.delete,
+        data: key
       })
     },
     selectChat: async (chat) => {

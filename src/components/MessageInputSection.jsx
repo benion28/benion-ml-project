@@ -11,7 +11,7 @@ const MessageInputSection = ({ text = '', suggestionRef }) => {
   const theme = useSelector((state) => state.ui.theme)
   const { chat } = useSelector((state) => state.chat)
   const { user } = useSelector((state) => state.auth)
-  const { sendChat, getAllChats, selectChat } = useChat()
+  const { sendChat, selectChat } = useChat()
   const [isListening, setIsListening] = useState(false)
   let recognition
 
@@ -62,7 +62,6 @@ const MessageInputSection = ({ text = '', suggestionRef }) => {
       }
 
       sendChat(data)
-      getAllChats()
       setMessage('')
     }
   }

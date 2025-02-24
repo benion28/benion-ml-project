@@ -12,7 +12,6 @@ const chatSlice = createSlice({
   },
   reducers: {
     chatRequestStart: (state) => {
-      state.isLoading = true;
       state.isError = false;
       state.error = null;
     },
@@ -26,6 +25,20 @@ const chatSlice = createSlice({
       state.isTyping = false;
       state.isError = false;
       state.chat = action.payload;
+
+      switch (action.payload.type) {
+        case 'add':
+          state.chats = [...state.chats, action.payload.data];
+          break;
+        case 'update':
+          state.chats = state.chats.map(chat => chat.$key === action.payload.data.$key ? action.payload.data : chat);
+          break;
+        case 'delete':
+          state.chats = state.chats.filter(chat => chat.$key !== action.payload.data);
+          break;
+        default:
+          break;
+      }
     },
     chatRequestFail: (state, action) => {
       state.isLoading = false;
@@ -39,8 +52,11 @@ const chatSlice = createSlice({
       state.isError = false;
       state.error = null;
     },
+    chatLoadingRequest: (state, action) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { chatRequestStart, chatsRequestSuccess, chatRequestSuccess, chatRequestFail, chatTypingRequest } = chatSlice.actions;
+export const { chatRequestStart, chatsRequestSuccess, chatRequestSuccess, chatRequestFail, chatTypingRequest, chatLoadingRequest } = chatSlice.actions;
 export default chatSlice.reducer;

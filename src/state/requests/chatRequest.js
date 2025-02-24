@@ -1,5 +1,5 @@
 const { requestMethod, requestTypes } = require("../../services/helpers")
-const { chatRequestStart, chatRequestSuccess, chatRequestFail, chatsRequestSuccess, chatTypingRequest } = require("../slices/chatSlice")
+const { chatRequestStart, chatRequestSuccess, chatRequestFail, chatsRequestSuccess, chatTypingRequest, chatLoadingRequest } = require("../slices/chatSlice")
 const { default: axiosInstance } = require("../../services/axiosInstance")
 
 const {  get, post, put, delete: del, patch } = requestMethod
@@ -20,7 +20,7 @@ module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? pro
         axiosInstance.post(fullUrl, data).then(response => {
           const responseData = response.data
           if (responseData.success) {
-            dispatch(chatRequestSuccess(responseData.data))
+            dispatch(chatRequestSuccess({type: 'add', data: responseData.data}))
           }
           return []
         }).catch(error => {
@@ -28,6 +28,7 @@ module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? pro
         })
         break
       case requestTypes.getAll:
+        dispatch(chatLoadingRequest(true))
         axiosInstance.get(fullUrl).then(response => {
           const responseData = response.data
           if (responseData.success) {
@@ -39,10 +40,11 @@ module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? pro
         })
         break
       case requestTypes.getOne:
+        dispatch(chatLoadingRequest(true))
         axiosInstance.get(fullUrl).then(response => {
           const responseData = response.data
           if (responseData.success) {
-            dispatch(chatRequestSuccess(responseData.data))
+            dispatch(chatRequestSuccess({type: 'getOne', data: responseData.data}))
           }
           return [responseData.data]
         }).catch(error => {
@@ -50,14 +52,14 @@ module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? pro
         })
         break
       case requestTypes.select:
-        dispatch(chatRequestSuccess(data))
+        dispatch(chatRequestSuccess({type: 'select', data}))
         break
       case requestTypes.update:
         dispatch(chatTypingRequest())
         axiosInstance.put(fullUrl, data).then(response => {
           const responseData = response.data
           if (responseData.success) {
-            dispatch(chatRequestSuccess(responseData.data))
+            dispatch(chatRequestSuccess({type: 'update', data: responseData.data}))
           }
           return []
         }).catch(error => {
@@ -65,10 +67,10 @@ module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? pro
         })
         break
       case requestTypes.delete:
-        axiosInstance.delete(fullUrl).then(response => {
+        axiosInstance.delete(fullUrl, data).then(response => {
           const responseData = response.data
           if (responseData.success) {
-            dispatch(chatRequestSuccess(responseData.data))
+            dispatch(chatRequestSuccess({type: 'delete', data}))
           }
           return []
         }).catch(error => {

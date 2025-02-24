@@ -11,11 +11,10 @@ import Loader from './custom/Loader'
 const ChatHistoryPanel = ({ chatHistory = [], onSelectConversation, onEdit }) => {
   const theme = useSelector((state) => state.ui.theme)
   const { isLoading } = useSelector((state) => state.chat)
-  const { deleteChat, getAllChats, selectChat } = useChat()
+  const { deleteChat, selectChat } = useChat()
 
   const handleDelete = (key) => {
     deleteChat(key)
-    getAllChats()
   }
 
   return (
