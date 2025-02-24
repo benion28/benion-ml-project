@@ -1,4 +1,7 @@
-import axiosInstance from "./axiosInstance";
+import jwt from 'jsonwebtoken'
+import axiosInstance from "./axiosInstance"
+
+export const tokenSecret = process.env.JWT_SECRET
 
 export const requestMethod = {
     get: 'GET',
@@ -156,3 +159,18 @@ export const chatGreeting = [
     message: 'Hi there! This is an AI Chatbot. Its nice to meet you. How can I help you today?'
   }
 ]
+
+export const generateToken = (data, time) => {
+  const token = jwt.sign(data, tokenSecret, { expiresIn: time })
+  return token
+}
+
+export const decryptToken = (token) => {
+  let tokenData = { success: false, data: null }
+  jwt.verify(token, tokenSecret, (error, decoded) => {
+      if (!error) {
+          tokenData = { success: true, data: decoded }
+      }
+  })
+  return tokenData
+}

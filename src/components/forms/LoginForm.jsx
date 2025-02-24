@@ -2,7 +2,7 @@ import React from 'react'
 import { Form as AntdForm, Divider } from 'antd'
 import { Form as BootstrapForm, Row, Col } from 'react-bootstrap'
 import { GoogleOutlined, FacebookOutlined, LockOutlined, UserOutlined } from '@ant-design/icons'
-import { danger_color, tertiary_color2 } from '../../services/helpers'
+import { danger_color, generateToken, tertiary_color2 } from '../../services/helpers'
 import TextInput from '../custom/TextInput'
 import ActionButton from '../custom/ActionButton'
 import Loader from '../custom/Loader'
@@ -24,6 +24,8 @@ const LoginForm = ({ switchToSignUp }) => {
   const onFinishFailed = (errors) => {
     console.log('Login Errors:', errors)
   }
+
+  console.log("Token", generateToken({ username: 'testUser', password: 'password123' }, '1d'))
 
   return (
     <AntdForm

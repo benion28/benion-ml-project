@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 const ChatBotPopUpForm = () => {
     const inputRef = useRef()
-    const { sendChat, getAllChats, selectChat } = useChat()
+    const { sendChat, selectChat } = useChat()
     const { chat } = useSelector((state) => state.chat)
     const { user } = useSelector((state) => state.auth)
 
@@ -48,7 +48,6 @@ const ChatBotPopUpForm = () => {
         }
 
         sendChat(data)
-        getAllChats()
     }
 
   return (

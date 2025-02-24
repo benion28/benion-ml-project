@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { decryptToken } from './helpers';
 
 const { error: toastError, success: toastSuccess } = toast
 
@@ -24,7 +25,15 @@ axiosInstance.interceptors.request.use(
     }
 
     // Add any custom headers (e.g., authentication tokens) here
-    const token = localStorage.getItem('mlToken')
+    let token = null
+    const mlToken = localStorage.getItem('mlToken')
+    if (mlToken) {
+      const parsedToken = decryptToken(mlToken)
+      if (parsedToken.success) {
+        const authData = parsedToken.data
+        token = authData.token
+      }
+    }
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }

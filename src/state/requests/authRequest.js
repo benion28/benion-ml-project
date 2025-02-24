@@ -19,7 +19,6 @@ module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? pro
         axiosInstance.post(fullUrl, data).then(response => {
           const responseData = response.data
           if (responseData.success) {
-            localStorage.setItem('mlToken', responseData.data.token)
             dispatch(authRequestSuccess(responseData.data))
           }
           return []
