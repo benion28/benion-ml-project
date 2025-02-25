@@ -54,7 +54,7 @@ module.exports = async ({ baseURL = process.env.NODE_ENV === 'development' ? pro
       case requestTypes.select:
         dispatch(chatRequestSuccess({type: 'select', data}))
         break
-      case requestTypes.update:
+      case requestTypes.edit:
         dispatch(chatTypingRequest())
         axiosInstance.put(fullUrl, data).then(response => {
           const responseData = response.data

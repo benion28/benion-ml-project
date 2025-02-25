@@ -24,14 +24,14 @@ const chatSlice = createSlice({
       state.isLoading = false;
       state.isTyping = false;
       state.isError = false;
-      state.chat = action.payload;
+      state.chat = action.payload.data;
 
       switch (action.payload.type) {
         case 'add':
           state.chats = [...state.chats, action.payload.data];
           break;
         case 'update':
-          state.chats = state.chats.map(chat => chat.$key === action.payload.data.$key ? action.payload.data : chat);
+          state.chats = state.chats.map(chat => chat.id === action.payload.data.id ? action.payload.data : chat);
           break;
         case 'delete':
           state.chats = state.chats.filter(chat => chat.$key !== action.payload.data);

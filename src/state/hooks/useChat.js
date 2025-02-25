@@ -25,7 +25,7 @@ const useChat = () => {
     sendChat: async (chat) => {
       const url = chat.id ? `${benionMlUrl}/edit-chat/${chat.id}` : `${benionMlUrl}/send-chat`
       const method = chat.id ? requestMethod.put : requestMethod.post
-      const type = chat.id ? requestTypes.update : requestTypes.add
+      const type = chat.id ? requestTypes.edit : requestTypes.add
 
       return await chatRequest({
         url,
